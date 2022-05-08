@@ -1,0 +1,12 @@
+{
+  "project_name": "my-awesome-project",
+  "module_name": "{{ cookiecutter.project_name.lower().replace('-', '_') }}",
+  "project_description": "My awesome project",
+  "organization": "yakimka",
+  "dockerhub_username": "{{ cookiecutter.organization }}",
+
+  "_copy_without_render": [
+    ".venv",
+    "docs/_build"
+  ]
+}
