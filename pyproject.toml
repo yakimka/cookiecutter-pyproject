@@ -1,0 +1,45 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "cookiecutter-pyproject"
+description = "Project for scaffolding a `python` package or project structure."
+version = "0.1.0"
+readme = "README.md"
+authors = ["yakimka <ss.yakim@gmail.com>"]
+
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+cookiecutter = "^1.7"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^4.0.1"
+pytest = "^7.1.2"
+tomlkit = "^0.10.2"
+binaryornot = "^0.4.4"
+flake8-pytest-style = "^1.6.0"
+pytest-cookies = "^0.6.1"
+
+[tool.pytest.ini_options]
+# Directories that are not visited by pytest collector:
+norecursedirs = [
+  "{{cookiecutter.project_name}}",
+  "hooks",
+  ".git",
+  "__pycache__",
+]
+
+# Strict `@xfail` by default:
+xfail_strict = true
+
+# Extra options:
+addopts = [
+  "--strict-markers",
+  "--strict-config",
+  "--tb=short",
+  "--doctest-modules",
+]
