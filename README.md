@@ -47,7 +47,16 @@ organization [yakimka]: <github_username>
 ```
 
 
-## Other
+## CI/CD
+
+For properly running CI/CD, you must set the following environment secrets in repo settings:
+
+- `DOCKERHUB_TOKEN`
+- `PYPI_TOKEN`
+- `TEST_PYPI_TOKEN` (optional, need to edit workflow)
+- `CODECOV_TOKEN` for private repo (and edit workflow)
+
+## Replacements
 
 You can replace mypy with pyright:
 - https://github.com/microsoft/pyright/blob/main/docs/ci-integration.md
