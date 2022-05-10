@@ -74,6 +74,7 @@ tomli = "^2.0.1"
 types-PyYAML = "^6.0.7"
 types-requests = "^2.27.16"
 yamllint = "^1.26.3"
+flake8-colors = "^0.1.9"
 
 [tool.poetry.extras]
 docs = ["sphinx", "sphinx-autodoc-typehints", "m2r2", "tomlkit"]

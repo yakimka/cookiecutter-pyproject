@@ -336,6 +336,17 @@ flake8 = ">=3.0.0"
 dev = ["coverage", "hypothesis", "hypothesmith (>=0.2)", "pre-commit"]
 
 [[package]]
+name = "flake8-colors"
+version = "0.1.9"
+description = "Error highlight plugin for Flake8."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+flake8 = ">3.0.0"
+
+[[package]]
 name = "flake8-comprehensions"
 version = "3.8.0"
 description = "A flake8 plugin to help you write better list/set/dict comprehensions."
@@ -1315,7 +1326,7 @@ docs = ["sphinx", "sphinx-autodoc-typehints", "m2r2", "tomlkit"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "124fc99cb6c8695e8b0e835c40cd2e64aea7cd80eb69941a6bed4241c6d77c56"
+content-hash = "8625ae7618fbb476b71bd47c56f05d535da4adfbda83a9d46e79ab731257c4d3"
 
 [metadata.files]
 alabaster = [
@@ -1492,6 +1503,10 @@ flake8-broken-line = [
 flake8-bugbear = [
     {file = "flake8-bugbear-22.4.25.tar.gz", hash = "sha256:f7c080563fca75ee6b205d06b181ecba22b802babb96b0b084cc7743d6908a55"},
     {file = "flake8_bugbear-22.4.25-py3-none-any.whl", hash = "sha256:ec374101cddf65bd7a96d393847d74e58d3b98669dbf9768344c39b6290e8bd6"},
+]
+flake8-colors = [
+    {file = "flake8-colors-0.1.9.tar.gz", hash = "sha256:35a5483a7d156d0438b402faea2fefe45b411571ce5dc93ba28670fd9429cc46"},
+    {file = "flake8_colors-0.1.9-py3-none-any.whl", hash = "sha256:e80ed1839dc151730adc51207e632823aa1f393d6db32897ffd0e60dceecfd9f"},
 ]
 flake8-comprehensions = [
     {file = "flake8-comprehensions-3.8.0.tar.gz", hash = "sha256:8e108707637b1d13734f38e03435984f6b7854fa6b5a4e34f93e69534be8e521"},
