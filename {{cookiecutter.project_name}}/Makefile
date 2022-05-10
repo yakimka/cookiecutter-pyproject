@@ -2,8 +2,8 @@ SHELL:=/usr/bin/env bash
 
 .PHONY: lint
 lint:
-	poetry run mypy ./**/*.py
 	poetry run flake8 .
+	poetry run mypy ./**/*.py
 	make verify_format
 	poetry run doc8 -q docs
 	poetry run yamllint -s .
