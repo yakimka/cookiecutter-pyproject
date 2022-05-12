@@ -43,8 +43,6 @@ jobs:
           dump-env \
             -t .env.template \
             -p 'SECRET_' > .env
-          echo "Login into Docker registry"
-          {% raw %}echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login "$REGISTRY" -u "$DOCKER_USERNAME" --password-stdin{% endraw %}
           echo "Debug information"
           docker info && docker-compose --version && git --version
           echo "Pulling cache"

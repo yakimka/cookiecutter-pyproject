@@ -40,7 +40,6 @@ services:
       environment:
         DJANGO_DATABASE_HOST: db
 
-    command: python -Wd manage.py runserver 0.0.0.0:8000
     healthcheck:
       # We use `$$` here because:
       # one `$` goes to shell,

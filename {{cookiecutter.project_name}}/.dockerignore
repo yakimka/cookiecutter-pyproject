@@ -10,6 +10,7 @@
 **/.ssh
 **/.venv
 **/.vscode
+**/__pycache__
 **/coverage
 **/env
 **/venv
