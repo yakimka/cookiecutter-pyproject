@@ -56,7 +56,12 @@ jobs:
           echo "Running checks"
           docker-compose build web
           docker-compose run --user=root --rm web ./ci.sh
-          echo "Pushing back the result for future runs"
+
+      - name: Push image for caching purposes
+        if: github.actor != 'dependabot[bot]'
+        run: |
+          echo "Login into Docker registry"
+          {% raw %}echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login "$REGISTRY" -u "$DOCKER_USERNAME" --password-stdin{% endraw %}
           docker tag "${PROJECT_NAME}:dev" "${IMAGE_FULL_NAME}:dev"
           docker push "${IMAGE_FULL_NAME}:dev"
 
