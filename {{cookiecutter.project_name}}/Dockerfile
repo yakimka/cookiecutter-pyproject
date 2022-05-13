@@ -30,10 +30,10 @@ ENV PYTHONUNBUFFERED=1 \
 # prepend poetry and venv to path
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
-RUN addgroup --gid 1001 --system app \
-    && adduser --uid 1001 --system --no-create-home --shell=/bin/false --disabled-password --group app \
+RUN addgroup --gid 1000 --system app \
+    && adduser --uid 1000 --system --no-create-home --shell=/bin/false --disabled-password --group app \
     && mkdir /app \
-    && chown -R 1001:1001 /app
+    && chown -R 1000:1000 /app
 
 RUN apt-get update && \
 apt-get install --no-install-recommends -y  \
