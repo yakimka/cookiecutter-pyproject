@@ -71,8 +71,6 @@ pytest-cov = "^3.0"
 pytest-randomly = "^3.12"
 safety = "^1.10"
 tomli = "^2.0.1"
-types-PyYAML = "^6.0.7"
-types-requests = "^2.27.16"
 yamllint = "^1.26.3"
 
 [tool.poetry.extras]
@@ -132,9 +130,6 @@ warn_redundant_casts = true
 warn_unreachable = true
 warn_unused_configs = true
 warn_unused_ignores = true
-
-[tool.pylint.master]
-extension-pkg-allow-list = ["dependency_injector"]
 
 [tool.pylint.messages_control]
 max-line-length = 80
