@@ -7,11 +7,19 @@ all: help
 
 .PHONY: lint
 lint:  ## Run flake8, mypy, other linters and verify formatting
-	poetry run flake8 $(SRC_DIR)
-	poetry run mypy $(SRC_DIR)
+	make flake8
+	make mypy
 	make verify_format
 	poetry run doc8 -q docs
 	poetry run yamllint -s .
+
+.PHONY: flake8
+flake8:  ## Run flake8
+	poetry run flake8 $(SRC_DIR)
+
+.PHONY: mypy
+mypy:  ## Run mypy
+	poetry run mypy $(SRC_DIR)
 
 .PHONY: unit
 unit:  ## Run unit tests
