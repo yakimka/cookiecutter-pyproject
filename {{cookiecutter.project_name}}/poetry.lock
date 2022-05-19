@@ -571,7 +571,7 @@ gitdb = ">=4.0.1,<5"
 
 [[package]]
 name = "hypothesis"
-version = "6.46.5"
+version = "6.46.6"
 description = "A library for property-based testing"
 category = "dev"
 optional = false
@@ -1288,7 +1288,7 @@ docs = ["sphinx", "sphinx-autodoc-typehints", "m2r2", "tomlkit"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "d18bf4c6f2f10b56cd0144d0e0b8d64a978860175aa81808a5a92debf483a1b4"
+content-hash = "05e51a04b1315136fa2e6ba179054c8bfcfe0c17ca71b7eedd9f0906b0ac0af8"
 
 [metadata.files]
 alabaster = [
@@ -1549,8 +1549,8 @@ gitpython = [
     {file = "GitPython-3.1.27.tar.gz", hash = "sha256:1c885ce809e8ba2d88a29befeb385fcea06338d3640712b59ca623c220bb5704"},
 ]
 hypothesis = [
-    {file = "hypothesis-6.46.5-py3-none-any.whl", hash = "sha256:40ebd37782b029b4063f50932c8678b2c494d97b5ec5fadcb02fca4e411a62dc"},
-    {file = "hypothesis-6.46.5.tar.gz", hash = "sha256:67c17f4555957f76831a831c31f77eb5c6051b671277cf4973d17e0f5169f648"},
+    {file = "hypothesis-6.46.6-py3-none-any.whl", hash = "sha256:1bf8dc555f7f1debaf0a03935e0681c16673043b5e34b4d1f75b0b9e9d1077ee"},
+    {file = "hypothesis-6.46.6.tar.gz", hash = "sha256:cc1e3f96f2d07814f40118762a701ea65385fd79a70d0d9599636afffd8d9ff1"},
 ]
 identify = [
     {file = "identify-2.5.0-py2.py3-none-any.whl", hash = "sha256:3acfe15a96e4272b4ec5662ee3e231ceba976ef63fd9980ed2ce9cc415df393f"},
