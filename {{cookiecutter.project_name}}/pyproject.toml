@@ -8,6 +8,11 @@ description = "{{ cookiecutter.project_description }}"
 version = "0.1.0"
 license = "MIT"
 
+#packages = [
+#    { include = "{{ cookiecutter.module_name }}" },
+#]
+#include = ["README.md"]
+
 authors = [
   "{{ cookiecutter.organization }}"
 ]
