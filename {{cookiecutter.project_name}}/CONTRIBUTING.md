@@ -44,7 +44,7 @@ We use `mypy` to run type checks on our code.
 To use it:
 
 ```bash
-mypy {{ cookiecutter.module_name }} tests/**/*.py
+make mypy
 ```
 
 
