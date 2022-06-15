@@ -11,6 +11,7 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
 import os
+import pathlib
 import sys
 from typing import Optional
 
@@ -22,14 +23,12 @@ sys.path.insert(0, os.path.abspath(".."))
 # -- Project information -----------------------------------------------------
 
 
-def _get_project_meta():
-    with open("../pyproject.toml") as pyproject:
-        file_contents = pyproject.read()
-
+def _get_project_meta() -> dict:
+    file_contents = pathlib.Path("../pyproject.toml").read_text()
     return tomlkit.parse(file_contents).value["tool"]["poetry"]
 
 
-pkg_meta = _get_project_meta()  # type: ignore
+pkg_meta = _get_project_meta()
 project = str(pkg_meta["name"])
 copyright = "2022, {{ cookiecutter.organization }}"  # noqa: PLW0622
 author = "{{ cookiecutter.organization }}"
