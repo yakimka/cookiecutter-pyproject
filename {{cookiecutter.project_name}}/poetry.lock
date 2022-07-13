@@ -7,6 +7,14 @@ optional = true
 python-versions = "*"
 
 [[package]]
+name = "aspy.refactor-imports"
+version = "3.0.2"
+description = "Utilities for refactoring imports in python-like syntax."
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "astor"
 version = "0.8.1"
 description = "Read/rewrite/write Python ASTs"
@@ -538,13 +546,14 @@ flake8 = "*"
 
 [[package]]
 name = "flake8-type-checking"
-version = "1.5.0"
+version = "2.0.4"
 description = "A flake8 plugin for managing type-checking imports & forward references"
 category = "dev"
 optional = false
 python-versions = ">=3.8,<4.0"
 
 [package.dependencies]
+"aspy.refactor-imports" = "*"
 flake8 = "*"
 
 [[package]]
@@ -1301,12 +1310,16 @@ docs = ["sphinx", "sphinx-autodoc-typehints", "m2r2", "tomlkit"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "a2c3137cbf9c01abf4439d151274436ad3cf01458d11e563421838643ad3366e"
+content-hash = "10d9b7cb2fe6754d5447f6669123077390287fb6d3430a36a4e3f5328387b687"
 
 [metadata.files]
 alabaster = [
     {file = "alabaster-0.7.12-py2.py3-none-any.whl", hash = "sha256:446438bdcca0e05bd45ea2de1668c1d9b032e1a9154c2c259092d77031ddd359"},
     {file = "alabaster-0.7.12.tar.gz", hash = "sha256:a661d72d58e6ea8a57f7a86e37d86716863ee5e92788398526d58b26a4e4dc02"},
+]
+"aspy.refactor-imports" = [
+    {file = "aspy.refactor_imports-3.0.2-py2.py3-none-any.whl", hash = "sha256:f306037682479945df61b2e6d01bf97256d68f3e704742768deef549e0d61fbb"},
+    {file = "aspy.refactor_imports-3.0.2.tar.gz", hash = "sha256:3c7329cdb2613c46fcd757c8e45120efbc3d4b9db805092911eb605c19c5795c"},
 ]
 astor = [
     {file = "astor-0.8.1-py2.py3-none-any.whl", hash = "sha256:070a54e890cefb5b3739d19f30f5a5ec840ffc9c50ffa7d23cc9fc1a38ebbfc5"},
@@ -1549,8 +1562,8 @@ flake8-string-format = [
     {file = "flake8_string_format-0.3.0-py2.py3-none-any.whl", hash = "sha256:812ff431f10576a74c89be4e85b8e075a705be39bc40c4b4278b5b13e2afa9af"},
 ]
 flake8-type-checking = [
-    {file = "flake8-type-checking-1.5.0.tar.gz", hash = "sha256:d01234fc2d3ffc9661dd797fb1bed19e2d92a1fb4041a4e8dc0200ea14f357c0"},
-    {file = "flake8_type_checking-1.5.0-py3-none-any.whl", hash = "sha256:b9873f011e18e20dee60e2b633f2c675f2aa1318499e5294b46c860fc75bdcd6"},
+    {file = "flake8-type-checking-2.0.4.tar.gz", hash = "sha256:2979d85ff7bf617ef486157f72469507636947d10186e73d478a28e1f4bb63c7"},
+    {file = "flake8_type_checking-2.0.4-py3-none-any.whl", hash = "sha256:1bbbad617a1dea8b70c22dc52af436a8a4fc734c6054d8e2610919387a838c4c"},
 ]
 flake8-typing-imports = [
     {file = "flake8_typing_imports-1.12.0-py2.py3-none-any.whl", hash = "sha256:4a072a5f5975caedfbd364fb54755983cae812e2b2f0125f3a71237868971a25"},
