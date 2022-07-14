@@ -4,6 +4,9 @@
   "project_description": "My awesome project",
   "organization": "yakimka",
   "dockerhub_username": "{{ cookiecutter.organization }}",
+  "max_line_length": "80",
+  "pydantic_support": "n",
+  "fastapi_support": "n",
 
   "_copy_without_render": [
     ".venv",
