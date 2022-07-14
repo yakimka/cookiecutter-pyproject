@@ -290,6 +290,17 @@ pycodestyle = ">=2.8.0,<2.9.0"
 pyflakes = ">=2.4.0,<2.5.0"
 
 [[package]]
+name = "flake8-annotations-complexity"
+version = "0.0.7"
+description = "A flake8 extension that checks for type annotations complexity"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+flake8 = "*"
+
+[[package]]
 name = "flake8-bandit"
 version = "3.0.0"
 description = "Automated security testing with bandit and flake8."
@@ -397,6 +408,17 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "flake8-helper"
+version = "0.2.1"
+description = "A helper library for Flake8 plugins."
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+flake8 = ">=3.8.4"
+
+[[package]]
 name = "flake8-implicit-str-concat"
 version = "0.3.0"
 description = "Flake8 plugin to encourage correct string literal concatenation."
@@ -484,6 +506,17 @@ python-versions = "*"
 flake8 = "*"
 
 [[package]]
+name = "flake8-return"
+version = "1.1.3"
+description = "Flake8 plugin that checks return values"
+category = "dev"
+optional = false
+python-versions = ">=3.6,<4.0"
+
+[package.dependencies]
+flake8-plugin-utils = ">=1.0,<2.0"
+
+[[package]]
 name = "flake8-rst-docstrings"
 version = "0.2.6"
 description = "Python docstring reStructuredText (RST) validator"
@@ -507,6 +540,30 @@ python-versions = ">=3.6.1"
 [package.dependencies]
 astor = ">=0.1"
 flake8 = ">=3.7"
+
+[[package]]
+name = "flake8-slots"
+version = "0.1.5"
+description = "A Flake8 plugin to require __slots__ to be defined for subclasses of immutable types."
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+flake8 = ">=3.8.4"
+flake8-helper = ">=0.1.1"
+
+[[package]]
+name = "flake8-strftime"
+version = "0.3.2"
+description = "A flake8 plugin which checks for use of platform specific strftime codes."
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+flake8 = ">=3.7"
+flake8-helper = ">=0.1.1"
 
 [[package]]
 name = "flake8-string-format"
@@ -541,6 +598,21 @@ python-versions = ">=3.6.1"
 
 [package.dependencies]
 flake8 = ">=3.8"
+
+[[package]]
+name = "flake8-warnings"
+version = "0.2.1"
+description = "Linter (flake8, pylint, custom CLI) for finding usage of deprecated functions."
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+astroid = "*"
+
+[package.extras]
+lint = ["flake8-length", "mypy", "isort"]
+test = ["pytest"]
 
 [[package]]
 name = "gitdb"
@@ -1234,6 +1306,14 @@ python-versions = ">=3.8"
 pbr = ">=2.0.0,<2.1.0 || >2.1.0"
 
 [[package]]
+name = "tokenize-rt"
+version = "4.2.1"
+description = "A wrapper around the stdlib `tokenize` which roundtrips."
+category = "dev"
+optional = false
+python-versions = ">=3.6.1"
+
+[[package]]
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -1317,6 +1397,18 @@ pathspec = ">=0.5.3"
 pyyaml = "*"
 
 [[package]]
+name = "yesqa"
+version = "1.3.0"
+description = "Automatically remove unnecessary `# noqa` comments."
+category = "dev"
+optional = false
+python-versions = ">=3.6.1"
+
+[package.dependencies]
+flake8 = ">=3.8"
+tokenize-rt = ">=2.1"
+
+[[package]]
 name = "zipp"
 version = "3.8.1"
 description = "Backport of pathlib-compatible object wrapper for zip files"
@@ -1334,7 +1426,7 @@ docs = ["sphinx", "sphinx-autodoc-typehints", "m2r2", "tomlkit"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "6bedae619156167c8992c45ac53fb4610f8405fdb790cbbe15cdbf45e9030599"
+content-hash = "1bf2ea97f7536bd0f27f899d724e882172bac348c5580054f746eeafd075f85a"
 
 [metadata.files]
 alabaster = [
@@ -1499,6 +1591,10 @@ flake8 = [
     {file = "flake8-4.0.1-py2.py3-none-any.whl", hash = "sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d"},
     {file = "flake8-4.0.1.tar.gz", hash = "sha256:806e034dda44114815e23c16ef92f95c91e4c71100ff52813adf7132a6ad870d"},
 ]
+flake8-annotations-complexity = [
+    {file = "flake8_annotations_complexity-0.0.7-py3-none-any.whl", hash = "sha256:a1410f5b964927032471ce99932d1670d28ea323b50400b45cc14575be070508"},
+    {file = "flake8_annotations_complexity-0.0.7.tar.gz", hash = "sha256:2ecd93375e3dee0d4e11e476087a52fa985c47bc049015ff04a9de38fc0c4dfd"},
+]
 flake8-bandit = [
     {file = "flake8_bandit-3.0.0-py2.py3-none-any.whl", hash = "sha256:61b617f4f7cdaa0e2b1e6bf7b68afb2b619a227bb3e3ae00dd36c213bd17900a"},
     {file = "flake8_bandit-3.0.0.tar.gz", hash = "sha256:54d19427e6a8d50322a7b02e1841c0a7c22d856975f3459803320e0e18e2d6a1"},
@@ -1535,6 +1631,10 @@ flake8-fixme = [
     {file = "flake8-fixme-1.1.1.tar.gz", hash = "sha256:50cade07d27a4c30d4f12351478df87339e67640c83041b664724bda6d16f33a"},
     {file = "flake8_fixme-1.1.1-py2.py3-none-any.whl", hash = "sha256:226a6f2ef916730899f29ac140bed5d4a17e5aba79f00a0e3ae1eff1997cb1ac"},
 ]
+flake8-helper = [
+    {file = "flake8_helper-0.2.1-py3-none-any.whl", hash = "sha256:9123cdf351ad32ee8a51b85036052302c478122d62fb512c0773e111b3d05241"},
+    {file = "flake8_helper-0.2.1.tar.gz", hash = "sha256:479f86d1c52df8e49ff876ecd3873242699f93eeece7e6675cdca9c37c9b0a16"},
+]
 flake8-implicit-str-concat = [
     {file = "flake8_implicit_str_concat-0.3.0-py2.py3-none-any.whl", hash = "sha256:a89ebc50567790fb7b83e032ed4014ae0db70e35d89e269c3323967135023600"},
     {file = "flake8_implicit_str_concat-0.3.0.tar.gz", hash = "sha256:c0e6ae227e46238e4c87844091f8072892caeccd3bb266576a7d449eadbf53a0"},
@@ -1565,6 +1665,10 @@ flake8-pytest-style = [
 flake8-quotes = [
     {file = "flake8-quotes-3.3.1.tar.gz", hash = "sha256:633adca6fb8a08131536af0d750b44d6985b9aba46f498871e21588c3e6f525a"},
 ]
+flake8-return = [
+    {file = "flake8-return-1.1.3.tar.gz", hash = "sha256:13a31edeb0c6157dd4f77166cdaa6141703d2b8b24def5558ae659852a003cb4"},
+    {file = "flake8_return-1.1.3-py3-none-any.whl", hash = "sha256:4a266191f7ed69aa26b835ec90c5a5522fa8f79f5cf6363a877ac499f8eb418b"},
+]
 flake8-rst-docstrings = [
     {file = "flake8-rst-docstrings-0.2.6.tar.gz", hash = "sha256:7d9526a264a1c2827b3408ea5f921f12ee0689ac123fecfa95744988aea02e6c"},
     {file = "flake8_rst_docstrings-0.2.6-py3-none-any.whl", hash = "sha256:a7a9bd9008e763339b2e19dbece7767ac0887cfaeaf9a70b12eb4449d5df1849"},
@@ -1572,6 +1676,14 @@ flake8-rst-docstrings = [
 flake8-simplify = [
     {file = "flake8_simplify-0.19.2-py3-none-any.whl", hash = "sha256:9c1e96ba738f9057a561697d67df7a9058898ac6313a67eda09942255cba6d38"},
     {file = "flake8_simplify-0.19.2.tar.gz", hash = "sha256:a30ef76bf1c0cb89a52a8a5cee37667688e61a66735e997c08d56cd002f9e3e9"},
+]
+flake8-slots = [
+    {file = "flake8_slots-0.1.5-py3-none-any.whl", hash = "sha256:b68278692761cb8d8248da65e0e14a59b5470c9db645f7dd0ab38a3bba7a913b"},
+    {file = "flake8_slots-0.1.5.tar.gz", hash = "sha256:7febed14ac5349359abe4b24773a9e725bb0ad216cc98b28538328010011050d"},
+]
+flake8-strftime = [
+    {file = "flake8_strftime-0.3.2-py3-none-any.whl", hash = "sha256:39e64d9635c18a367526e02c2d3db06664dd00eccc78ebc16ebe57dcc9b7d355"},
+    {file = "flake8_strftime-0.3.2.tar.gz", hash = "sha256:81a6ab503a0958d2b0c8476b108afb1baf0a82ead3bdab167e511205331aa28f"},
 ]
 flake8-string-format = [
     {file = "flake8-string-format-0.3.0.tar.gz", hash = "sha256:65f3da786a1461ef77fca3780b314edb2853c377f2e35069723348c8917deaa2"},
@@ -1584,6 +1696,10 @@ flake8-type-checking = [
 flake8-typing-imports = [
     {file = "flake8_typing_imports-1.12.0-py2.py3-none-any.whl", hash = "sha256:4a072a5f5975caedfbd364fb54755983cae812e2b2f0125f3a71237868971a25"},
     {file = "flake8_typing_imports-1.12.0.tar.gz", hash = "sha256:d9482d7a3dd3d777915c7f8907a166b405aaf8314ecceb1be2b642e9375d87ed"},
+]
+flake8-warnings = [
+    {file = "flake8-warnings-0.2.1.tar.gz", hash = "sha256:41bc4bbb1640f2f89566054458f91138a34a4d90ceebfc0c28e48d34fcdf943f"},
+    {file = "flake8_warnings-0.2.1-py3-none-any.whl", hash = "sha256:5e7098d515e933eeddedc6f6a4fca4aee78434da35b7a663271cc02158ad8267"},
 ]
 gitdb = [
     {file = "gitdb-4.0.9-py3-none-any.whl", hash = "sha256:8033ad4e853066ba6ca92050b9df2f89301b8fc8bf7e9324d412a63f8bf1a8fd"},
@@ -1965,6 +2081,10 @@ stevedore = [
     {file = "stevedore-4.0.0-py3-none-any.whl", hash = "sha256:87e4d27fe96d0d7e4fc24f0cbe3463baae4ec51e81d95fbe60d2474636e0c7d8"},
     {file = "stevedore-4.0.0.tar.gz", hash = "sha256:f82cc99a1ff552310d19c379827c2c64dd9f85a38bcd5559db2470161867b786"},
 ]
+tokenize-rt = [
+    {file = "tokenize_rt-4.2.1-py2.py3-none-any.whl", hash = "sha256:08a27fa032a81cf45e8858d0ac706004fcd523e8463415ddf1442be38e204ea8"},
+    {file = "tokenize_rt-4.2.1.tar.gz", hash = "sha256:0d4f69026fed520f8a1e0103aa36c406ef4661417f20ca643f913e33531b3b94"},
+]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
     {file = "toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"},
@@ -2057,6 +2177,10 @@ wrapt = [
 ]
 yamllint = [
     {file = "yamllint-1.27.1.tar.gz", hash = "sha256:e688324b58560ab68a1a3cff2c0a474e3fed371dfe8da5d1b9817b7df55039ce"},
+]
+yesqa = [
+    {file = "yesqa-1.3.0-py2.py3-none-any.whl", hash = "sha256:81ebcfd85fa8e811df1fd7bc5e31d37fcc693570c8e383f40387c90382c950de"},
+    {file = "yesqa-1.3.0.tar.gz", hash = "sha256:5263ba0515fc67ce5dd78b9010c14ebd1bd10813599d4b0cd758567e6396c587"},
 ]
 zipp = [
     {file = "zipp-3.8.1-py3-none-any.whl", hash = "sha256:47c40d7fe183a6f21403a199b3e4192cca5774656965b0a4988ad2f8feb5f009"},
