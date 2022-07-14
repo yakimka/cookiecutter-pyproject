@@ -98,10 +98,10 @@ include_trailing_comma = true
 use_parentheses = true
 # See https://github.com/timothycrosley/isort#multi-line-output-modes
 multi_line_output = 3
-line_length = 80
+line_length = {{ cookiecutter.max_line_length }}
 
 [tool.black]
-line-length = 80
+line-length = {{ cookiecutter.max_line_length }}
 
 [tool.pytest.ini_options]
 # Directories that are not visited by pytest collector:
@@ -132,9 +132,9 @@ addopts = [
     "if TYPE_CHECKING:",
   ]
 
-[tool.mypy]
-#plugins = ["pydantic.mypy"]
-
+[tool.mypy]{% if cookiecutter.pydantic_support.startswith("y") %}
+plugins = ["pydantic.mypy"]
+{% endif %}
 # mypy configurations: https://mypy.readthedocs.io/en/latest/config_file.html
 allow_redefinition = false
 check_untyped_defs = true
@@ -163,4 +163,4 @@ disallow_untyped_defs = false
 disallow_incomplete_defs = false
 
 [tool.pylint.messages_control]
-max-line-length = 80
+max-line-length = {{ cookiecutter.max_line_length }}
