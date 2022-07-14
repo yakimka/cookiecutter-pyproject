@@ -78,6 +78,7 @@ pytest-randomly = "^3.12"
 safety = "^2.0"
 tomli = "^2.0.1"
 yamllint = "^1.26.3"
+pytest-deadfixtures = "^2.2.1"
 
 [tool.poetry.extras]
 docs = ["sphinx", "sphinx-autodoc-typehints", "m2r2", "tomlkit"]

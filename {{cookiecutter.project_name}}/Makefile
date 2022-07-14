@@ -25,6 +25,7 @@ mypy:  ## Run mypy
 .PHONY: unit
 unit:  ## Run unit tests
 	$(POETRY_RUN) pytest
+	$(POETRY_RUN) pytest --dead-fixtures
 
 .PHONY: package
 package:  ## Run packages (dependencies) checks
