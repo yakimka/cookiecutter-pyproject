@@ -79,6 +79,7 @@ safety = "^2.0"
 tomli = "^2.0.1"
 yamllint = "^1.26.3"
 pytest-deadfixtures = "^2.2.1"
+pytest-asyncio = "^0.18.3"
 
 [tool.poetry.extras]
 docs = ["sphinx", "sphinx-autodoc-typehints", "m2r2", "tomlkit"]
@@ -103,13 +104,15 @@ norecursedirs = ["*.egg", ".eggs", "dist", "build", "docs", ".tox", ".git", "__p
 # Strict `@xfail` by default:
 xfail_strict = true
 
+asyncio_mode = "auto"
+
 # Extra options:
 addopts = [
   "--strict-markers",
   "--strict-config",
   "--tb=short",
   "--doctest-modules",
-  "--cov",
+#  "--cov",
   "--cov-report=term:skip-covered",
   "--cov-report=term-missing",
   "--cov-report=html",
