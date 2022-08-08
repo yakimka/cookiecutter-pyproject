@@ -19,7 +19,7 @@ cookiecutter = "^2.1"
 [tool.poetry.dev-dependencies]
 flake8 = "^4.0.1"
 pytest = "^7.1.2"
-tomlkit = "^0.11.1"
+tomlkit = "^0.11.2"
 binaryornot = "^0.4.4"
 flake8-pytest-style = "^1.6.0"
 pytest-cookies = "^0.6.1"
