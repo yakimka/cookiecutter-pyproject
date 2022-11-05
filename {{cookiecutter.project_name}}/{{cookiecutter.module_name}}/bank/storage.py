@@ -3,9 +3,8 @@ from __future__ import annotations
 from collections import defaultdict
 from typing import TYPE_CHECKING, Any
 
-from {{ cookiecutter.module_name }}.bank.account import Account
-
 if TYPE_CHECKING:
+    from {{ cookiecutter.module_name }}.bank.account import Account
     from {{ cookiecutter.module_name }}.bank.user import User
 
 
