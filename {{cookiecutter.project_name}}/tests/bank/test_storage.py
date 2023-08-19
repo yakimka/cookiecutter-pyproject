@@ -46,7 +46,5 @@ def test_get_unknown_account_by_name(storage, user):
 def test_cant_add_same_account_twice(storage, user, account):
     storage.add_account(user, account)
 
-    with pytest.raises(
-        AccountAlreadyExistsError, match="Account already in storage"
-    ):
+    with pytest.raises(AccountAlreadyExistsError, match="Account already in storage"):
         storage.add_account(user, account)

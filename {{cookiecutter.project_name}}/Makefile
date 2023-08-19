@@ -11,7 +11,7 @@ pre-commit:
 
 .PHONY: lint
 lint:  ## Run flake8, mypy, other linters and verify formatting
-	@make pre-commit args=run --all-files
+	@make pre-commit args="run --all-files"
 	@make mypy
 
 .PHONY: mypy

@@ -20,7 +20,6 @@ repos:
     rev: 6.1.0
     hooks:
       - id: flake8
-        args: [--config=backend/setup.cfg]
         additional_dependencies: [
           # "flake8-assertive~=2.1.0"
           # "flake8-future-annotations~=1.1.0",
