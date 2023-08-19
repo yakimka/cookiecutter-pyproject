@@ -26,9 +26,7 @@ class Storage:
     def get_accounts(self, user: User) -> list[Account]:
         return self._data[user.id]
 
-    def get_account_by_name(
-        self, user: User, account_name: str
-    ) -> Account | None:
+    def get_account_by_name(self, user: User, account_name: str) -> Account | None:
         for account in self._data[user.id]:
             if account.name == account_name:
                 return account

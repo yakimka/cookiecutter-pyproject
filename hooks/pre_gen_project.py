@@ -1,9 +1,9 @@
 import re
 import sys
 
-PROJECT_REGEX = r'^[a-z][a-z0-9\-_]+[a-z0-9]$'
-PROJECT_NAME = '{{ cookiecutter.project_name }}'
-MODULE_NAME = '{{ cookiecutter.module_name }}'
+PROJECT_REGEX = r"^[a-z][a-z0-9\-_]+[a-z0-9]$"
+PROJECT_NAME = "{{ cookiecutter.project_name }}"
+MODULE_NAME = "{{ cookiecutter.module_name }}"
 
 
 def validate_project_name():
@@ -16,22 +16,22 @@ def validate_project_name():
     if not re.match(PROJECT_REGEX, PROJECT_NAME):
         # Validates project's module name:
         message = [
-            'ERROR: The project slug {0} is not a valid name.',
-            'Start with a lowercase letter.',
-            'Followed by any lowercase',
-            'letters, numbers, slashes, or dashes (-).',
+            "ERROR: The project slug {0} is not a valid name.",
+            "Start with a lowercase letter.",
+            "Followed by any lowercase",
+            "letters, numbers, slashes, or dashes (-).",
         ]
-        raise ValueError(' '.join(message).format(PROJECT_NAME))
+        raise ValueError(" ".join(message).format(PROJECT_NAME))
 
 
 def validate_module_name():
-    if MODULE_NAME != MODULE_NAME.lower().replace('-', '_'):
+    if MODULE_NAME != MODULE_NAME.lower().replace("-", "_"):
         message = [
-            'ERROR: The module name {0} is invalid.',
-            'Module name must be lowercase and',
-            'and consist of letters, numbers, slashes, or slashes (_).',
+            "ERROR: The module name {0} is invalid.",
+            "Module name must be lowercase and",
+            "and consist of letters, numbers, slashes, or slashes (_).",
         ]
-        raise ValueError(' '.join(message).format(MODULE_NAME))
+        raise ValueError(" ".join(message).format(MODULE_NAME))
 
 
 validators = (

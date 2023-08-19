@@ -11,7 +11,7 @@ import textwrap
 
 # Get the root project directory:
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
-PROJECT_NAME = '{{ cookiecutter.project_name }}'
+PROJECT_NAME = "{{ cookiecutter.project_name }}"
 
 
 def print_futher_instuctions():

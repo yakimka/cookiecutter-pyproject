@@ -8,7 +8,7 @@ set -o nounset
 # and remove this project completely.
 
 # Creating a test directory:
-mkdir -p "$HOME/.test" && cd "$HOME/.test"
+mkdir -p ".test" && cd ".test"
 
 # Scaffold the project:
 PROJECT_NAME="fake-project"
@@ -24,10 +24,12 @@ cookiecutter "$GITHUB_WORKSPACE" \
 cd "$PROJECT_NAME"
 
 # Create new venv:
-python -m venv .venv
+python3 -m venv .venv
 . .venv/bin/activate
 pip install -U pip
 
 # Testing the project:
 POETRY_VIRTUALENVS_CREATE=false poetry install
+# create git repo for pre-commit
+git init && git add -A
 make test
