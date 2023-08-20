@@ -86,7 +86,6 @@ addopts = [
   "--strict-markers",
   "--strict-config",
   "--tb=short",
-  "--cov-report=term:skip-covered",
   "--cov-report=term-missing",
   "--cov-report=xml",
 #  "--cov-fail-under=100",
