@@ -40,8 +40,8 @@ hypothesis = "^6.46.7"
 mypy = "^1.5"
 pre-commit = "^3.3.3"
 pytest = "^7.1"
-pytest-asyncio = "^0.18.3"
-pytest-cov = "^3.0"
+pytest-asyncio = "^0.21.1"
+pytest-cov = "^4.1.0"
 pytest-deadfixtures = "^2.2.1"
 pytest-randomly = "^3.12"
 
@@ -53,10 +53,10 @@ include_trailing_comma = true
 use_parentheses = true
 # See https://github.com/timothycrosley/isort#multi-line-output-modes
 multi_line_output = 3
-line_length = {{ cookiecutter.max_line_length }}
+line_length = "{{ cookiecutter.max_line_length }}"
 
 [tool.black]
-line-length = {{ cookiecutter.max_line_length }}
+line-length = "{{ cookiecutter.max_line_length }}"
 
 [tool.pytest.ini_options]
 # Directories that are not visited by pytest collector:
@@ -91,9 +91,9 @@ exclude_lines = [
 
 [tool.mypy]
 files = ["."]
-{% if cookiecutter.pydantic_support.startswith("y") %}
+#{% if cookiecutter.pydantic_support.startswith("y") %}
 plugins = ["pydantic.mypy"]
-{% endif %}
+#{% endif %}
 # mypy configurations: https://mypy.readthedocs.io/en/latest/config_file.html
 allow_redefinition = false
 check_untyped_defs = true
