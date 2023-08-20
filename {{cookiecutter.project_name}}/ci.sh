@@ -5,20 +5,10 @@ set -o nounset
 set -o pipefail
 
 # Initializing global variables and functions:
-: "${ENVIRONMENT:=development}"
-
-# Fail CI if `ENVIRONMENT` is not set to `development`:
-if [ "$ENVIRONMENT" != 'development' ]; then
-  echo 'ENVIRONMENT is not set to development. Running tests is not safe.'
-  exit 1
-fi
+: "${CI:=0}"
 
 pyclean () {
-  # Cleaning cache:
-  find . \
-    | grep -E '(__pycache__|\.hypothesis|\.perm|\.cache|\.static|\.py[cod]$)' \
-    | xargs rm -rf \
-  || true
+  echo 'cleaning up...'
 }
 
 run_ci () {
@@ -28,8 +18,17 @@ run_ci () {
   # Testing filesystem and permissions:
   touch .perm && rm -f .perm
 
-  # Run checks
-  make test
+  poetry install
+  poetry run pre-commit run --all-files
+  poetry run mypy
+  poetry check
+  poetry run pip check
+  poetry run pytest --cov
+  poetry run pytest --dead-fixtures
+  poetry build
+  poetry export --format=requirements.txt --output=dist/requirements.txt
+  # print shasum of the built packages
+  shasum dist/*
 
   set +x
   echo '[ci finished]'

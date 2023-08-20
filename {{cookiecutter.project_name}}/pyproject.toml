@@ -60,7 +60,19 @@ line-length = "{{ cookiecutter.max_line_length }}"
 
 [tool.pytest.ini_options]
 # Directories that are not visited by pytest collector:
-norecursedirs = ["*.egg", ".eggs", "dist", "build", "docs", ".tox", ".git", "__pycache__"]
+norecursedirs = [
+  "*.egg",
+  ".eggs",
+  "dist",
+  "build",
+  "docs",
+  ".tox",
+  ".git",
+  "__pycache__",
+  ".cache",
+  ".venv",
+  "venv",
+]
 
 # Strict `@xfail` by default:
 xfail_strict = true
@@ -69,13 +81,13 @@ asyncio_mode = "auto"
 
 # Extra options:
 addopts = [
+  # don't add --cov because it breaks pycharm debugger
+  #   just add it manaually when needed to cmd args
   "--strict-markers",
   "--strict-config",
   "--tb=short",
-#  "--cov",
   "--cov-report=term:skip-covered",
   "--cov-report=term-missing",
-  "--cov-report=html",
   "--cov-report=xml",
 #  "--cov-fail-under=100",
 ]
@@ -91,6 +103,9 @@ exclude_lines = [
 
 [tool.mypy]
 files = ["."]
+exclude = [
+  "tests/",
+]
 #{% if cookiecutter.pydantic_support.startswith("y") %}
 plugins = ["pydantic.mypy"]
 #{% endif %}
@@ -115,8 +130,3 @@ warn_redundant_casts = true
 warn_unreachable = true
 warn_unused_configs = true
 warn_unused_ignores = true
-
-[[tool.mypy.overrides]]
-module = "tests.*"
-disallow_untyped_defs = false
-disallow_incomplete_defs = false

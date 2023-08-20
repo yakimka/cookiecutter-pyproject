@@ -32,4 +32,4 @@ pip install -U pip
 POETRY_VIRTUALENVS_CREATE=false poetry install
 # create git repo for pre-commit
 git init && git add -A
-make test
+./ci.sh
