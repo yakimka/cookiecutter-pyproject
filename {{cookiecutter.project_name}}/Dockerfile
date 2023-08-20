@@ -32,6 +32,6 @@ USER appuser
 
 ENV PATH="/venv/bin:$PATH"
 WORKDIR /opt/app
-COPY --from=builder --chown=appuser /venv /venv
+COPY --from=builder /venv /venv
 
 CMD ["python"]
