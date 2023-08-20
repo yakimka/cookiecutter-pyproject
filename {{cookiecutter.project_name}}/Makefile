@@ -1,13 +1,25 @@
 SHELL:=/usr/bin/env bash
 
-POETRY_RUN=poetry run
+RUN=docker compose exec -it devtools
 
 .PHONY: all
 all: help
 
+.PHONY: start-devtools
+start-devtools:  ## Start devtools container
+	docker compose up -d devtools
+
+.PHONY: stop-devtools
+stop-devtools:  ## Stop devtools container
+	docker compose stop devtools
+
 .PHONY: pre-commit
-pre-commit:
-	poetry run pre-commit $(args)
+pre-commit:  ## Run pre-commit with args
+	$(RUN) poetry run pre-commit $(args)
+
+.PHONY: poetry
+poetry:  ## Run poetry with args
+	$(RUN) poetry $(args)
 
 .PHONY: lint
 lint:  ## Run flake8, mypy, other linters and verify formatting
@@ -16,20 +28,37 @@ lint:  ## Run flake8, mypy, other linters and verify formatting
 
 .PHONY: mypy
 mypy:  ## Run mypy
-	$(POETRY_RUN) mypy
+	$(RUN) poetry run mypy
 
 .PHONY: unit
 unit:  ## Run unit tests
-	$(POETRY_RUN) pytest --cov
-	$(POETRY_RUN) pytest --dead-fixtures
+	$(RUN) poetry run pytest --cov
+	$(RUN) poetry run pytest --dead-fixtures
 
 .PHONY: package
 package:  ## Run packages (dependencies) checks
-	poetry check
-	$(POETRY_RUN) pip check
+	$(RUN) poetry check
+	$(RUN) poetry run pip check
 
 .PHONY: test
 test: lint package unit  ## Run linting and tests
+
+.PHONY: run-ci
+run-ci:  ## Run CI locally
+	$(RUN) ./ci.sh
+
+.PHONY: clean
+clean:  ## Clean up
+	rm -rf dist
+	rm -rf htmlcov
+	rm -f .coverage coverage.xml
+
+.PHONY: clean-all
+clean-all:  ## Clean up all
+	@make clean
+	rm -rf .cache
+	rm -rf .mypy_cache
+	rm -rf .pytest_cache
 
 .PHONY: help
 help:
