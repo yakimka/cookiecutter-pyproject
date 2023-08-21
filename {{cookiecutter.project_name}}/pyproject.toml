@@ -104,9 +104,9 @@ exclude_lines = [
 files = ["."]
 exclude = ["tests/"]
 
-# {% if cookiecutter.pydantic_support.startswith("y") %}
+##{% if cookiecutter.pydantic_support.startswith("y") %}
 plugins = ["pydantic.mypy"]
-# {% endif %}
+##{% endif %}
 # mypy configurations: https://mypy.readthedocs.io/en/latest/config_file.html
 allow_redefinition = false
 check_untyped_defs = true
