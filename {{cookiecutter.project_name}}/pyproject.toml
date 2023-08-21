@@ -102,9 +102,8 @@ exclude_lines = [
 
 [tool.mypy]
 files = ["."]
-exclude = [
-  "tests/",
-]
+exclude = ["tests/"]
+
 #{% if cookiecutter.pydantic_support.startswith("y") %}
 plugins = ["pydantic.mypy"]
 #{% endif %}
