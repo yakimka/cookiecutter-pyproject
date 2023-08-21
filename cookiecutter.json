@@ -1,4 +1,5 @@
 {
+  "main_branch": "main",
   "project_name": "my-awesome-project",
   "module_name": "{{ cookiecutter.project_name.lower().replace('-', '_') }}",
   "project_description": "My awesome project",
