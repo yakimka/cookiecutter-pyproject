@@ -51,7 +51,7 @@ jobs:
           DOCKERHUB_TOKEN: {% raw %}${{ secrets.DOCKERHUB_TOKEN }}{% endraw %}
         run: |
           cp .env.template .env
-          echo "${DOCKERHUB_TOKEN}" | docker login "$REGISTRY" -u "$DOCKER_USERNAME" --password-stdin
+          docker login "$REGISTRY" -u "$DOCKER_USERNAME" --password="${DOCKERHUB_TOKEN}"
           docker buildx create --use --driver=docker-container
           docker --version && docker compose --version
 
@@ -107,7 +107,7 @@ jobs:
           DOCKERHUB_TOKEN: {% raw %}${{ secrets.DOCKERHUB_TOKEN }}{% endraw %}
         run: |
           cp .env.template .env
-          echo "${DOCKERHUB_TOKEN}" | docker login "$REGISTRY" -u "$DOCKER_USERNAME" --password-stdin
+          docker login "$REGISTRY" -u "$DOCKER_USERNAME" --password="${DOCKERHUB_TOKEN}"
           docker buildx create --use --driver=docker-container
           docker --version && docker compose --version
 
@@ -164,7 +164,7 @@ jobs:
           DOCKERHUB_TOKEN: {% raw %}${{ secrets.DOCKERHUB_TOKEN }}{% endraw %}
         run: |
           cp .env.template .env
-          echo "${DOCKERHUB_TOKEN}" | docker login "$REGISTRY" -u "$DOCKER_USERNAME" --password-stdin
+          docker login "$REGISTRY" -u "$DOCKER_USERNAME" --password="${DOCKERHUB_TOKEN}"
           docker buildx create --use --driver=docker-container
           docker --version && docker compose --version
 
