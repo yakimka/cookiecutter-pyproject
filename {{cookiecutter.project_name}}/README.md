@@ -1,11 +1,9 @@
 # {{ cookiecutter.project_name }}
 
-[![Build Status](https://github.com/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}/workflows/package/badge.svg?branch={{ cookiecutter.main_branch }}&event=push)](https://github.com/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}/actions?query=workflow%3Apackage)
-[![Build Status](https://github.com/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}/workflows/docker/badge.svg?branch={{ cookiecutter.main_branch }}&event=push)](https://github.com/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}/actions?query=workflow%3Adocker)
+[![Build Status](https://github.com/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}/actions/workflows/workflow-ci.yml/badge.svg?branch={{ cookiecutter.main_branch }}&event=push)](https://github.com/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}/actions/workflows/workflow-ci.yml)
 [![codecov](https://codecov.io/gh/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}/branch/{{ cookiecutter.main_branch }}/graph/badge.svg)](https://codecov.io/gh/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }})
 [![pypi](https://img.shields.io/pypi/v/{{ cookiecutter.project_name }}.svg)](https://pypi.org/project/{{ cookiecutter.project_name }}/)
 [![downloads](https://static.pepy.tech/personalized-badge/{{ cookiecutter.project_name }}?period=total&units=none&left_color=grey&right_color=blue&left_text=downloads)](https://pepy.tech/project/{{ cookiecutter.project_name }})
-[![docs](https://readthedocs.org/projects/{{ cookiecutter.project_name }}/badge/?version=latest)](https://{{ cookiecutter.project_name }}.readthedocs.io/en/latest/?badge=latest)
 
 {{ cookiecutter.project_description }}
 
