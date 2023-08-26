@@ -16,7 +16,7 @@ To activate your `virtualenv` run `poetry shell`.
 
 ## One magic command
 
-Run `make test` to run everything we have!
+Run `make checks` to run everything we have!
 
 
 ## Tests
@@ -26,7 +26,7 @@ We use `pytest` and `flake8` for quality control.
 To run all tests:
 
 ```bash
-make unit
+make test
 ```
 
 To run linting:

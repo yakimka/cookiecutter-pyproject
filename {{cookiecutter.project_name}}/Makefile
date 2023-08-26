@@ -30,8 +30,8 @@ lint:  ## Run flake8, mypy, other linters and verify formatting
 mypy:  ## Run mypy
 	$(RUN) poetry run mypy
 
-.PHONY: unit
-unit:  ## Run unit tests
+.PHONY: test
+test:  ## Run tests
 	$(RUN) poetry run pytest --cov
 	$(RUN) poetry run pytest --dead-fixtures
 
@@ -40,8 +40,8 @@ package:  ## Run packages (dependencies) checks
 	$(RUN) poetry check
 	$(RUN) poetry run pip check
 
-.PHONY: test
-test: lint package unit  ## Run linting and tests
+.PHONY: checks
+checks: lint package test  ## Run linting and tests
 
 .PHONY: run-ci
 run-ci:  ## Run CI locally
