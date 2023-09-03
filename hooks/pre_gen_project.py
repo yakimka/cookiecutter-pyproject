@@ -1,7 +1,7 @@
 import re
 import sys
 
-PROJECT_REGEX = r"^[a-zA-Z][a-zA-Z0-9\-_]+[a-zA-Z0-9]$"
+PROJECT_REGEX = r"^[a-z][a-z0-9\-_]+[a-z0-9]$"
 PROJECT_NAME = "{{ cookiecutter.project_name }}"
 MODULE_NAME = "{{ cookiecutter.module_name }}"
 
@@ -17,8 +17,9 @@ def validate_project_name():
         # Validates project's module name:
         message = [
             "ERROR: The project slug {0} is not a valid name.",
-            "Start with a letter",
-            "followed by any letters, numbers, slashes, or dashes (-).",
+            "Start with a lowercase letter.",
+            "Followed by any lowercase",
+            "letters, numbers, slashes, or dashes (-).",
         ]
         raise ValueError(" ".join(message).format(PROJECT_NAME))
 
