@@ -41,7 +41,7 @@ package:  ## Run packages (dependencies) checks
 	$(RUN) poetry run pip check
 
 .PHONY: build-package
-build-package:  ## Run packages (dependencies) checks
+build-package:  ## Build package
 	$(RUN) poetry build
 	$(RUN) poetry export --format=requirements.txt --output=dist/requirements.txt
 
