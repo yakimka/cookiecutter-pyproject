@@ -32,7 +32,7 @@ mypy:  ## Run mypy
 
 .PHONY: test
 test:  ## Run tests
-	$(RUN) poetry run pytest --cov
+	$(RUN) poetry run pytest --cov={{cookiecutter.module_name}}
 	$(RUN) poetry run pytest --dead-fixtures
 
 .PHONY: package

@@ -115,7 +115,7 @@ jobs:
         run: |
           docker pull ${DEV_IMAGE}
           docker tag ${DEV_IMAGE} ${PROJECT_NAME}:dev
-          docker compose run --user=$(id -u) --rm -d devtools sleep infinity
+          docker compose run --rm -d devtools sleep infinity
 
       - run: echo "PROJECT_VERSION=$(docker compose exec devtools poetry version --short)" >> $GITHUB_ENV
 
@@ -172,7 +172,7 @@ jobs:
         run: |
           docker pull ${DEV_IMAGE}
           docker tag ${DEV_IMAGE} ${PROJECT_NAME}:dev
-          docker compose run --user=$(id -u) --rm -d devtools sleep infinity
+          docker compose run --rm -d devtools sleep infinity
 
       - run: echo "PROJECT_VERSION=$(docker compose exec devtools poetry version --short)" >> $GITHUB_ENV
 
@@ -180,21 +180,22 @@ jobs:
       - name: Expose GitHub Runtime
         uses: crazy-max/ghaction-github-runtime@v2
 
-      - name: Build image
-        run: >
-          docker buildx build --load
-          --build-arg WHEEL=${PROJECT_NAME}-${PROJECT_VERSION}-py3-none-any.whl
-          -t ${IMAGE_FULL_NAME}:latest . --cache-to type=gha,mode=max --cache-from type=gha
+      - name: Create tag string
+        run: echo "TAG_ARGS=-t ${IMAGE_FULL_NAME}:latest" >> $GITHUB_ENV
 
       - name: Add version from git tag
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          docker tag "${IMAGE_FULL_NAME}:latest" "${IMAGE_FULL_NAME}:${VERSION}"
-          docker tag "${IMAGE_FULL_NAME}:latest" "${IMAGE_FULL_NAME}:${SHORT_VERSION}"
+          echo "TAG_ARGS=${TAGS} -t ${IMAGE_FULL_NAME}:${VERSION} -t ${IMAGE_FULL_NAME}:${SHORT_VERSION}" >> $GITHUB_ENV
 
-      - name: Push production images
+      - name: Set push flag
         if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/{{ cookiecutter.main_branch }}'
-        run: |
-          echo "Showing debug information"
-          docker image ls
-          docker push "${IMAGE_FULL_NAME}" --all-tags
+        run: echo "PUSH_FLAG=--push" >> $GITHUB_ENV
+
+      - name: Build image
+        run: >
+          docker buildx build ${PUSH_FLAG:-}
+          --build-arg WHEEL=${PROJECT_NAME}-${PROJECT_VERSION}-py3-none-any.whl
+          --cache-to type=gha,mode=max --cache-from type=gha
+          --platform=linux/arm64,linux/amd64
+          ${TAG_ARGS} .
