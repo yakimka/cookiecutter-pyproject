@@ -28,11 +28,11 @@ lint:  ## Run flake8, mypy, other linters and verify formatting
 
 .PHONY: mypy
 mypy:  ## Run mypy
-	$(RUN) poetry run mypy
+	$(RUN) poetry run mypy $(args)
 
 .PHONY: test
 test:  ## Run tests
-	$(RUN) poetry run pytest --cov=tests --cov={{cookiecutter.module_name}}
+	$(RUN) poetry run pytest --cov=tests --cov={{cookiecutter.module_name}} $(args)
 	$(RUN) poetry run pytest --dead-fixtures
 
 .PHONY: package
@@ -42,7 +42,7 @@ package:  ## Run packages (dependencies) checks
 
 .PHONY: build-package
 build-package:  ## Build package
-	$(RUN) poetry build
+	$(RUN) poetry build $(args)
 	$(RUN) poetry export --format=requirements.txt --output=dist/requirements.txt
 
 .PHONY: checks
@@ -67,7 +67,7 @@ clean-all:  ## Clean up all
 
 .PHONY: bash
 bash:  ## Run bash
-	$(RUN) bash
+	$(RUN) bash $(args)
 
 .PHONY: help
 help:
