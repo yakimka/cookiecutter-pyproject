@@ -50,14 +50,14 @@ make mypy
 
 ## Submitting your code
 
-What the point of this method?
+What are the point of this method?
 
-1. We use protected `main`/`master` branch,
+1. We use protected `{{ cookiecutter.main_branch }}` branch,
    so the only way to push your code is via pull request
 2. We use issue branches: to implement a new feature or to fix a bug
    create a new branch
-3. Then create a pull request to `main`/`master` branch
+3. Then create a pull request to `{{ cookiecutter.main_branch }}` branch
 4. We use `git tag`s to make releases, so we can track what has changed
    since the latest release
 
-In this method, the latest version of the app is always in the `main`/`master` branch.
+In this method, the latest version of the app is always in the `{{ cookiecutter.main_branch }}` branch.
