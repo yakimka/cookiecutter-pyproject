@@ -35,7 +35,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.10"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 hypothesis = "^6.84.1"
 mypy = "^1.5"
 pre-commit = "^3.4.0"
