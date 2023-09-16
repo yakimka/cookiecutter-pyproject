@@ -196,6 +196,7 @@ jobs:
         run: >
           docker buildx build ${PUSH_FLAG:-}
           --build-arg WHEEL=${PROJECT_NAME}-${PROJECT_VERSION}-py3-none-any.whl
-          --cache-to type=gha,mode=max --cache-from type=gha
+          --cache-to type=gha,mode=max,scope=$GITHUB_REF_NAME
+          --cache-from type=gha,scope=$GITHUB_REF_NAME
           --platform=linux/arm64,linux/amd64
           ${TAG_ARGS} .
