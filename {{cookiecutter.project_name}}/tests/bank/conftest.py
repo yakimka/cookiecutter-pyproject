@@ -1,5 +1,3 @@
-from typing import Type
-
 import pytest
 
 from {{ cookiecutter.module_name }}.bank.account import Account
@@ -7,7 +5,7 @@ from {{ cookiecutter.module_name }}.bank.user import User
 
 
 @pytest.fixture()
-def make_user() -> Type[User]:
+def make_user() -> type[User]:
     return User
 
 
