@@ -14,7 +14,7 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.8"
 
-cookiecutter = "^2.1"
+cookiecutter = "^2.3"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^5.0.4"
