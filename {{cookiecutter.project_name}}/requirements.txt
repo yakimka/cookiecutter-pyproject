@@ -17,5 +17,5 @@ flake8-simplify~=0.20.0
 flake8-type-checking~=2.4.1
 flake8-typing-imports~=1.14.0
 flake8-unused-arguments~=0.0.13
-flake8-warnings~=0.4.0
+flake8-warnings~=0.4.1
 pep8-naming~=0.13.3
