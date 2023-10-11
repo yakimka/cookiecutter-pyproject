@@ -83,6 +83,7 @@ asyncio_mode = "auto"
 addopts = [
   # don't add --cov because it breaks pycharm debugger
   #   just add it manaually when needed to cmd args
+  "--import-mode=importlib",
   "--strict-markers",
   "--strict-config",
   "--tb=short",
