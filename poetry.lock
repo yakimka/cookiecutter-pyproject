@@ -161,13 +161,13 @@ files = [
 
 [[package]]
 name = "cookiecutter"
-version = "2.3.0"
+version = "2.4.0"
 description = "A command-line utility that creates projects from project templates, e.g. creating a Python package project from a Python package project template."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "cookiecutter-2.3.0-py3-none-any.whl", hash = "sha256:7e87944757c6e9f8729cf89a4139b6a35ab4d6dcbc6ae3e7d6360d44ad3ad383"},
-    {file = "cookiecutter-2.3.0.tar.gz", hash = "sha256:942a794981747f6d7f439d6e49d39dc91a9a641283614160c93c474c72c29621"},
+    {file = "cookiecutter-2.4.0-py3-none-any.whl", hash = "sha256:8344663028abc08ec09b912e663636a97e1775bffe973425ec0107431acd390e"},
+    {file = "cookiecutter-2.4.0.tar.gz", hash = "sha256:6d1494e66a784f23324df9d593f3e43af3db4f4b926b9e49e6ff060169fc042a"},
 ]
 
 [package.dependencies]
@@ -693,4 +693,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "4ec717634561c3302a592754cb297f23d4e06aa22454097c15a1b2b57472d126"
+content-hash = "26cf8746ebd4b1edccc1faa8e1ecf958f27d64d8f34cfd678dbeba08cd194202"
