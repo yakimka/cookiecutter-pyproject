@@ -25,6 +25,9 @@ cd "$PROJECT_NAME"
 
 # Create new venv:
 python3 -m venv .venv
+# Workaround for https://github.com/python/cpython/issues/112252
+export OSTYPE="linux-gnu"
+
 . .venv/bin/activate
 pip install -U pip
 
