@@ -7,19 +7,13 @@ name = "{{ cookiecutter.project_name }}"
 description = "{{ cookiecutter.project_description }}"
 version = "0.1.0"
 license = "MIT"
-
-#packages = [
-#    { include = "{{ cookiecutter.module_name }}" },
-#]
-#include = ["README.md"]
-
 authors = [
   "{{ cookiecutter.organization }}"
 ]
 
 readme = "README.md"
 
-repository = "https://github.com/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}"
+repository = "https://github.com/{{cookiecutter.organization}}/{{cookiecutter.project_name}}"
 
 keywords = []
 
@@ -36,10 +30,9 @@ classifiers = [
 python = "^3.10"
 
 [tool.poetry.group.dev.dependencies]
-hypothesis = "^6.86.1"
-mypy = "^1.5"
-pre-commit = "^3.4.0"
-pytest = "^7.4"
+mypy = "^1.7.0"
+pre-commit = "^3.5.0"
+pytest = "^7.4.3"
 pytest-asyncio = "^0.21.1"
 pytest-cov = "^4.1.0"
 pytest-deadfixtures = "^2.2.1"
