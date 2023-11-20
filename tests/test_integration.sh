@@ -19,7 +19,8 @@ cookiecutter "$GITHUB_WORKSPACE" \
   project_name="$PROJECT_NAME" \
   project_description="My custom app" \
   license="MIT" \
-  organization="yakimka"
+  organization="yakimka" \
+  force_typing="y"
 
 cd "$PROJECT_NAME"
 

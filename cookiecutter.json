@@ -8,6 +8,7 @@
   "max_line_length": "88",
   "pydantic_support": "n",
   "fastapi_support": "n",
+  "force_typing": "n",
 
   "_copy_without_render": [
     ".venv",

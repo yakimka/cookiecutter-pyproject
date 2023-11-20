@@ -97,7 +97,6 @@ exclude_lines = [
 [tool.mypy]
 files = ["."]
 exclude = ["tests/"]
-
 ##{% if cookiecutter.pydantic_support.startswith("y") %}
 plugins = ["pydantic.mypy"]
 ##{% endif %}
@@ -106,10 +105,10 @@ allow_redefinition = false
 check_untyped_defs = true
 disallow_any_explicit = false
 disallow_any_generics = false
-disallow_untyped_calls = true
-disallow_untyped_decorators = true
 disallow_incomplete_defs = true
-disallow_untyped_defs = true
+disallow_untyped_calls = '{% if cookiecutter.force_typing.startswith("y") %}true{% else %}false{% endif %}'
+disallow_untyped_decorators = '{% if cookiecutter.force_typing.startswith("y") %}true{% else %}false{% endif %}'
+disallow_untyped_defs = '{% if cookiecutter.force_typing.startswith("y") %}true{% else %}false{% endif %}'
 ignore_errors = false
 ignore_missing_imports = true
 implicit_reexport = false
