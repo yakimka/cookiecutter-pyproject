@@ -65,6 +65,7 @@ norecursedirs = [
   ".cache",
   ".venv",
   "venv",
+  ".pre-commit",
 ]
 
 # Strict `@xfail` by default:

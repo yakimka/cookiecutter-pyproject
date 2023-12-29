@@ -36,6 +36,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 # For pre-commit
+# TODO PRE_COMMIT_HOME
 RUN mkdir -p $XDG_CONFIG_HOME/git \
     && touch $XDG_CONFIG_HOME/git/config \
     && chown -R $USER_ID:$GROUP_ID $XDG_CONFIG_HOME \
