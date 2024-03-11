@@ -22,10 +22,10 @@ env:
   PROJECT_NAME: "{{ cookiecutter.project_name }}"
   REGISTRY: "docker.io"
   REGISTRY_USERNAME: "{{ cookiecutter.dockerhub_username }}"
-  REGISTRY_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  REGISTRY_TOKEN: {% raw %}${{ secrets.DOCKERHUB_TOKEN }}{% endraw %}
   CACHE_REGISTRY: "ghcr.io"
-  CACHE_REGISTRY_USERNAME: "{{ cookiecutter.dockerhub_username }}"
-  CACHE_REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  CACHE_REGISTRY_USERNAME: "{{ cookiecutter.github_username }}"
+  CACHE_REGISTRY_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
   DOCKER_COMPOSE_SERVICE_NAME: "app"
   MAIN_PY_VERSION: "3.11"
   POETRY_DOCKER_IMAGE: "yakimka/poetry:1.8.2-py3.11-slim"
