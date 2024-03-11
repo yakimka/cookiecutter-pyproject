@@ -5,6 +5,7 @@
   "project_description": "My awesome project",
   "organization": "yakimka",
   "dockerhub_username": "{{ cookiecutter.organization }}",
+  "github_username": "{{ cookiecutter.organization }}",
   "max_line_length": "88",
   "pydantic_support": "n",
   "fastapi_support": "n",
