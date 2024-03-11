@@ -13,16 +13,18 @@ on:
     - cron: "21 7 8 * *"
 
 env:
-  DOCKER_USERNAME: "{{ cookiecutter.dockerhub_username }}"
-  PROJECT_NAME: "{{ cookiecutter.project_name }}"
-  DOCKER_COMPOSE_SERVICE_NAME: "app"
-  MAIN_PY_VERSION: "3.11"
   PIP_NO_CACHE_DIR: "off"
   POETRY_VIRTUALENVS_IN_PROJECT: "true"
   POETRY_NO_INTERACTION: "1"
-  REGISTRY: "docker.io"
   DOCKER_BUILDKIT: "1"
   COMPOSE_DOCKER_CLI_BUILD: "1"
+
+  PROJECT_NAME: "{{ cookiecutter.project_name }}"
+  REGISTRY: "docker.io"
+  DOCKER_USERNAME: "{{ cookiecutter.dockerhub_username }}"
+  REGISTRY_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  DOCKER_COMPOSE_SERVICE_NAME: "app"
+  MAIN_PY_VERSION: "3.11"
 
 concurrency:
   group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
@@ -48,8 +50,6 @@ jobs:
       - run: echo "SHORT_VERSION=$(echo ${VERSION%.*})" >> $GITHUB_ENV
 
       - name: Prepare Docker
-        env:
-          REGISTRY_TOKEN: {% raw %}${{ secrets.DOCKERHUB_TOKEN }}{% endraw %}
         run: |
           cp .env.template .env
           docker login "$REGISTRY" -u "$DOCKER_USERNAME" --password="${REGISTRY_TOKEN}"
@@ -104,8 +104,6 @@ jobs:
       - run: echo "DEV_IMAGE=${IMAGE_FULL_NAME}:dev-${MAIN_PY_VERSION}-${DEV_VERSION}" >> $GITHUB_ENV
 
       - name: Prepare Docker
-        env:
-          REGISTRY_TOKEN: {% raw %}${{ secrets.DOCKERHUB_TOKEN }}{% endraw %}
         run: |
           cp .env.template .env
           docker login "$REGISTRY" -u "$DOCKER_USERNAME" --password="${REGISTRY_TOKEN}"
@@ -162,8 +160,6 @@ jobs:
       - run: echo "SHORT_VERSION=$(echo ${VERSION%.*})" >> $GITHUB_ENV
 
       - name: Prepare Docker
-        env:
-          REGISTRY_TOKEN: {% raw %}${{ secrets.DOCKERHUB_TOKEN }}{% endraw %}
         run: |
           cp .env.template .env
           docker login "$REGISTRY" -u "$DOCKER_USERNAME" --password="${REGISTRY_TOKEN}"
