@@ -21,10 +21,14 @@ env:
 
   PROJECT_NAME: "{{ cookiecutter.project_name }}"
   REGISTRY: "docker.io"
-  DOCKER_USERNAME: "{{ cookiecutter.dockerhub_username }}"
+  REGISTRY_USERNAME: "{{ cookiecutter.dockerhub_username }}"
   REGISTRY_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  CACHE_REGISTRY: "ghcr.io"
+  CACHE_REGISTRY_USERNAME: "{{ cookiecutter.dockerhub_username }}"
+  CACHE_REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKER_COMPOSE_SERVICE_NAME: "app"
   MAIN_PY_VERSION: "3.11"
+  POETRY_DOCKER_IMAGE: "yakimka/poetry:1.8.2-py3.11-slim"
 
 concurrency:
   group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
@@ -34,8 +38,10 @@ permissions: read-all
 
 jobs:
   check-code:
-    #permissions: write-all
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     strategy:
       matrix:
         python-version: ['3.10', '3.11']
@@ -43,16 +49,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: echo "IMAGE_FULL_NAME=$(echo ${REGISTRY}/${DOCKER_USERNAME}/${PROJECT_NAME})" >> $GITHUB_ENV
+      - run: echo "DEV_IMAGE_FULL_NAME=$(echo ${CACHE_REGISTRY}/${CACHE_REGISTRY_USERNAME}/${PROJECT_NAME})" >> $GITHUB_ENV
       - run: echo "DEV_VERSION=`(cat Dockerfile-dev; cat .github/workflows/workflow-ci.yml)|sha1sum |cut -c 1-8`" >> $GITHUB_ENV
-      - run: echo "DEV_IMAGE=${IMAGE_FULL_NAME}:dev-{% raw %}${{ matrix.python-version }}{% endraw %}-${DEV_VERSION}" >> $GITHUB_ENV
+      - run: echo "DEV_IMAGE=${DEV_IMAGE_FULL_NAME}:dev-{% raw %}${{ matrix.python-version }}{% endraw %}-${DEV_VERSION}" >> $GITHUB_ENV
       - run: echo "VERSION=$(echo ${GITHUB_REF:10})" >> $GITHUB_ENV
       - run: echo "SHORT_VERSION=$(echo ${VERSION%.*})" >> $GITHUB_ENV
 
       - name: Prepare Docker
         run: |
           cp .env.template .env
-          docker login "$REGISTRY" -u "$DOCKER_USERNAME" --password="${REGISTRY_TOKEN}"
+          docker login "$CACHE_REGISTRY" -u "$CACHE_REGISTRY_USERNAME" --password="${CACHE_REGISTRY_TOKEN}"
           docker buildx create --use --driver=docker-container
           docker --version && docker compose --version
 
@@ -99,14 +105,14 @@ jobs:
           name: {% raw %}built-package-py${{ env.MAIN_PY_VERSION }}{% endraw %}
           path: dist/
 
-      - run: echo "IMAGE_FULL_NAME=$(echo ${REGISTRY}/${DOCKER_USERNAME}/${PROJECT_NAME})" >> $GITHUB_ENV
+      - run: echo "DEV_IMAGE_FULL_NAME=$(echo ${CACHE_REGISTRY}/${CACHE_REGISTRY_USERNAME}/${PROJECT_NAME})" >> $GITHUB_ENV
       - run: echo "DEV_VERSION=`(cat Dockerfile-dev; cat .github/workflows/workflow-ci.yml)|sha1sum |cut -c 1-8`" >> $GITHUB_ENV
-      - run: echo "DEV_IMAGE=${IMAGE_FULL_NAME}:dev-${MAIN_PY_VERSION}-${DEV_VERSION}" >> $GITHUB_ENV
+      - run: echo "DEV_IMAGE=${DEV_IMAGE_FULL_NAME}:dev-${MAIN_PY_VERSION}-${DEV_VERSION}" >> $GITHUB_ENV
 
       - name: Prepare Docker
         run: |
           cp .env.template .env
-          docker login "$REGISTRY" -u "$DOCKER_USERNAME" --password="${REGISTRY_TOKEN}"
+          docker login "$CACHE_REGISTRY" -u "$CACHE_REGISTRY_USERNAME" --password="${CACHE_REGISTRY_TOKEN}"
           docker buildx create --use --driver=docker-container
           docker --version && docker compose --version
 
@@ -142,8 +148,10 @@ jobs:
         run: docker compose exec devtools poetry publish
 
   release-image:
-    #permissions: write-all
     runs-on: ubuntu-latest
+#    permissions:
+#      contents: read
+#      packages: write
     needs: [ check-code ]
 
     steps:
@@ -162,7 +170,7 @@ jobs:
       - name: Prepare Docker
         run: |
           cp .env.template .env
-          docker login "$REGISTRY" -u "$DOCKER_USERNAME" --password="${REGISTRY_TOKEN}"
+          docker login "$REGISTRY" -u "$REGISTRY_USERNAME" --password="${REGISTRY_TOKEN}"
           docker buildx create --use --driver=docker-container
           docker --version && docker compose --version
 
