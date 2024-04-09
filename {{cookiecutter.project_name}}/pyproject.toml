@@ -71,6 +71,7 @@ norecursedirs = [
 # Strict `@xfail` by default:
 xfail_strict = true
 
+# pytest-asyncio
 asyncio_mode = "auto"
 
 # Extra options:
