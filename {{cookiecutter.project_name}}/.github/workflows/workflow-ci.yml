@@ -107,7 +107,7 @@ jobs:
 
       - name: Prepare Docker
         run: |
-          docker login "$REGISTRY" -u "$REGISTRY_USERNAME" --password="${REGISTRY_TOKEN}"
+          docker login "$REGISTRY" -u "$REGISTRY_USERNAME" --password="${REGISTRY_TOKEN}" || true
 
       - name: Pull and spin dev container
         run: |
