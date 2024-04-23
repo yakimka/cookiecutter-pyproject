@@ -53,7 +53,7 @@ For properly running CI/CD, you must set the following environment secrets in re
 
 - `DOCKERHUB_TOKEN`
 - `PYPI_TOKEN`
-- `CODECOV_TOKEN` for private repo (and edit workflow)
+- `CODECOV_TOKEN`
 
 Also you need to duplicate these secrets to Dependabot settings
 if you want to run pipelines on Dependabot PRs.
