@@ -17,4 +17,4 @@ flake8-type-checking~=2.9.0
 flake8-typing-imports~=1.15.0
 flake8-unused-arguments~=0.0.13
 flake8-warnings~=0.4.1
-pep8-naming~=0.13.3
+pep8-naming~=0.14.1
