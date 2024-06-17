@@ -1,7 +1,7 @@
 # Just lint deps for pre-commit
 #   for use with dependabot
 #   .pre-commit-config.yaml need to be updated manually
-flake8==7.0.0
+flake8==7.1.0
 dlint~=0.14.1
 flake8-async~=24.3.6
 flake8-bandit~=4.1.1
