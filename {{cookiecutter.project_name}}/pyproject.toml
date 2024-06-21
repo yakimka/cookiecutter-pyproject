@@ -52,6 +52,7 @@ line_length = "{{ cookiecutter.max_line_length }}"
 line-length = "{{ cookiecutter.max_line_length }}"
 
 [tool.pytest.ini_options]
+pythonpath = "."
 # Directories that are not visited by pytest collector:
 norecursedirs = [
   "*.egg",
