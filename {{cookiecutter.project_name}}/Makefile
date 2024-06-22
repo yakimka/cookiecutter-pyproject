@@ -45,6 +45,11 @@ build-package:  ## Build package
 	$(RUN) poetry build $(args)
 	$(RUN) poetry export --format=requirements.txt --output=dist/requirements.txt
 
+.PHONY: build-production-image
+build-production-image:  ## Build production image
+	build-package
+	docker build -t {{ cookiecutter.project_name }}:prod .
+
 .PHONY: checks
 checks: lint package test  ## Run linting and tests
 
