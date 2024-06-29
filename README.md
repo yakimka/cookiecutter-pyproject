@@ -21,7 +21,6 @@ This project is used to scaffold a `python` package or project structure.
 - [`pytest`](https://github.com/pytest-dev/pytest) for testing
 - `flake8` for linting
 - `Github Actions` as the default CI
-- [`sphinx`](http://www.sphinx-doc.org/en/master/) and [`readthedocs.org`](https://readthedocs.org/) for documentation
 - [`pre-commit`](https://pre-commit.com/) for running checks before committing (run `pre-commit install` to install git hook)
 
 
