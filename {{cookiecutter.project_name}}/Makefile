@@ -1,17 +1,9 @@
 SHELL:=/usr/bin/env bash
 
-RUN=docker compose exec -it devtools
+RUN=docker compose run --rm -it devtools
 
 .PHONY: all
 all: help
-
-.PHONY: start-devtools
-start-devtools:  ## Start devtools container
-	docker compose up -d devtools
-
-.PHONY: stop-devtools
-stop-devtools:  ## Stop devtools container
-	docker compose stop devtools
 
 .PHONY: pre-commit
 pre-commit:  ## Run pre-commit with args
