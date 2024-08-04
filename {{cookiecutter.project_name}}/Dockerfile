@@ -1,4 +1,4 @@
-FROM python:3.11-slim-bullseye as builder
+FROM python:3.12.4-slim-bullseye as builder
 
 ARG WHEEL={{ cookiecutter.project_name }}-0.1.0-py3-none-any.whl
 ENV VIRTUAL_ENV=/venv
