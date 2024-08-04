@@ -5,8 +5,6 @@ x-common: &common
     target: development
     context: .
     dockerfile: Dockerfile-dev
-    args:
-      - PYTHON_VERSION=${PYTHON_VERSION:-3.11}
   image: "{{ cookiecutter.project_name }}:dev"
 #  env_file: .env
   volumes:
