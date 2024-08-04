@@ -25,7 +25,7 @@ COPY ./dist/$WHEEL ./$WHEEL
 RUN pip install --upgrade --no-cache-dir ./$WHEEL --no-deps
 
 
-FROM python:3.11-slim-bullseye as production
+FROM python:3.12.4-slim-bullseye as production
 
 RUN useradd -M appuser --uid=1000 --shell=/bin/false
 USER appuser
