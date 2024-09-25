@@ -194,3 +194,15 @@ jobs:
           --cache-from type=gha,scope=$GITHUB_REF_NAME
           --platform=linux/arm64,linux/amd64
           ${TAG_ARGS} .
+
+  deploy:
+    name: Deploy To Production
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    needs: [ release-image ]
+    if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master'
+    steps:
+      - name: Update service
+        run: curl {% raw %}${{ secrets.UPDATE_URL }}{% endraw %}
