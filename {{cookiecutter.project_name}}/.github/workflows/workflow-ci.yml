@@ -205,4 +205,6 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/{{ cookiecutter.main_branch }}'
     steps:
       - name: Update service
-        run: curl {% raw %}${{ secrets.UPDATE_URL }}{% endraw %}
+        run: |
+          sleep 30
+          curl {% raw %}${{ secrets.UPDATE_URL }}{% endraw %}
