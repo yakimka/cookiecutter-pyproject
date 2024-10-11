@@ -14,7 +14,7 @@ PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 PROJECT_NAME = "{{ cookiecutter.project_name }}"
 
 
-def print_futher_instuctions():
+def print_further_instructions():
     """Shows user what to do next after project creation."""
     message = """
     Your project {0} is created.
@@ -25,4 +25,25 @@ def print_futher_instuctions():
     print(textwrap.dedent(message.format(PROJECT_NAME)))  # noqa: WPS421
 
 
-print_futher_instuctions()
+def apply_flake_dependencies_to_pre_commit_config():
+    """Add flake8 dependencies to pre-commit config."""
+    indent = " " * 10
+    with open("requirements.txt", "r") as requirements_file:
+        requirements = [
+            f'{indent}"{line.strip()}",'  # noqa: E231
+            for line in requirements_file
+            if not line.startswith("#")
+        ]
+    with open(".pre-commit-config.yaml", "r") as pre_commit_config:
+        pre_commit_config_content = pre_commit_config.read()
+
+    marker = f"{indent}# Insert flake8 additional dependencies here"
+    new_config = pre_commit_config_content.replace(marker, "\n".join(requirements))
+    with open(".pre-commit-config.yaml", "w") as pre_commit_config:
+        pre_commit_config.write(new_config)
+
+    os.remove("./requirements.txt")
+
+
+apply_flake_dependencies_to_pre_commit_config()
+print_further_instructions()
