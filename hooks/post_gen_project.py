@@ -28,7 +28,7 @@ def print_further_instructions():
 def apply_flake_dependencies_to_pre_commit_config():
     """Add flake8 dependencies to pre-commit config."""
     indent = " " * 10
-    with open("requirements.txt", "r") as requirements_file:
+    with open("requirements.flake8.txt", "r") as requirements_file:
         requirements = [
             f'{indent}"{line.strip()}",'  # noqa: E231
             for line in requirements_file
@@ -42,7 +42,7 @@ def apply_flake_dependencies_to_pre_commit_config():
     with open(".pre-commit-config.yaml", "w") as pre_commit_config:
         pre_commit_config.write(new_config)
 
-    os.remove("./requirements.txt")
+    os.remove("./requirements.flake8.txt")
 
 
 apply_flake_dependencies_to_pre_commit_config()
