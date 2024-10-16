@@ -20,6 +20,7 @@ env:
   COMPOSE_DOCKER_CLI_BUILD: "1"
 
   PROJECT_NAME: "{{ cookiecutter.project_name }}"
+  MODULE_NAME: "{{ cookiecutter.module_name }}"
   REGISTRY: "docker.io"
   REGISTRY_USERNAME: "{{ cookiecutter.dockerhub_username }}"
   REGISTRY_TOKEN: {% raw %}${{ secrets.DOCKERHUB_TOKEN }}{% endraw %}
@@ -189,7 +190,7 @@ jobs:
       - name: Build image
         run: >
           docker buildx build ${PUSH_FLAG:-}
-          --build-arg WHEEL=${PROJECT_NAME}-${PROJECT_VERSION}-py3-none-any.whl
+          --build-arg WHEEL=${MODULE_NAME}-${PROJECT_VERSION}-py3-none-any.whl
           --cache-to type=gha,mode=max,scope=$GITHUB_REF_NAME
           --cache-from type=gha,scope=$GITHUB_REF_NAME
           --platform=linux/arm64,linux/amd64
