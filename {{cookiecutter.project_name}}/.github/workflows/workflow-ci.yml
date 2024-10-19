@@ -208,4 +208,4 @@ jobs:
       - name: Update service
         run: |
           sleep 30
-          curl {% raw %}${{ secrets.UPDATE_URL }}{% endraw %}
+          curl {% raw %}${{ secrets.UPDATE_URL }}{% endraw %} || curl {% raw %}${{ secrets.UPDATE_URL }}{% endraw %}
