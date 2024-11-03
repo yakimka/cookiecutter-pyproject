@@ -40,7 +40,7 @@ RUN apt-get update \
 RUN mkdir -p $XDG_CONFIG_HOME/git \
     && touch $XDG_CONFIG_HOME/git/config \
     && chown -R $USER_ID:$GROUP_ID $XDG_CONFIG_HOME \
-    && git config --global safe.directory $CODE_PATH
+    && git config --global safe.directory "*"
 
 
 FROM python-base as builder-base
