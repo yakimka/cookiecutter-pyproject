@@ -1,6 +1,6 @@
 # https://github.com/python-poetry/poetry/discussions/1879#discussioncomment-216865
 # `python-base` sets up all our shared environment variables
-ARG PYTHON_VERSION=3.12.4
+ARG PYTHON_VERSION=3.12.7
 FROM python:${PYTHON_VERSION}-slim-bullseye as python-base
 
 ENV PYTHONUNBUFFERED=1 \
