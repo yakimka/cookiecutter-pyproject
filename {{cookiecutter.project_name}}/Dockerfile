@@ -1,4 +1,4 @@
-FROM python:3.12.4-slim-bullseye as builder
+FROM python:3.12.7-slim-bullseye as builder
 
 ARG WHEEL={{ cookiecutter.module_name }}-0.1.0-py3-none-any.whl
 ENV VIRTUAL_ENV=/venv
@@ -25,7 +25,7 @@ COPY ./dist/$WHEEL ./$WHEEL
 RUN pip install --upgrade --no-cache-dir ./$WHEEL --no-deps
 
 
-FROM python:3.12.4-slim-bullseye as production
+FROM python:3.12.7-slim-bullseye as production
 
 RUN useradd -M appuser --uid=1000 --shell=/bin/false
 USER appuser
