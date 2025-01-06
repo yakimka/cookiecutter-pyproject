@@ -2,21 +2,16 @@
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.poetry]
-name = "{{ cookiecutter.project_name }}"
-description = "{{ cookiecutter.project_description }}"
+[project]
+name = "cookiecutter.project_name"
 version = "0.1.0"
-license = "MIT"
-authors = [
-  "{{ cookiecutter.organization }}"
-]
-
+description = "{{ cookiecutter.project_description }}"
+license = { text = "MIT" }
 readme = "README.md"
-
-repository = "https://github.com/{{cookiecutter.organization}}/{{cookiecutter.project_name}}"
-
-keywords = []
-
+requires-python = ">=3.10,<4.0.0"
+authors = [
+  { name = "{{ cookiecutter.organization }}" },
+]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
@@ -31,8 +26,8 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy"
 ]
 
-[tool.poetry.dependencies]
-python = "^3.10"
+[tool.poetry.urls]
+repository = "https://github.com/{{cookiecutter.organization}}/{{cookiecutter.project_name}}"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.13.0"
@@ -42,6 +37,9 @@ pytest-asyncio = "^0.24.0"
 pytest-cov = "^6.0.0"
 pytest-deadfixtures = "^2.2.1"
 pytest-randomly = "^3.16"
+
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.7.0"
 
 [tool.isort]
 # isort configuration:
