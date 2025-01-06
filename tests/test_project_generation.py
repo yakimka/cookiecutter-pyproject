@@ -83,14 +83,10 @@ def test_pyproject_toml(cookies, context):
     path = os.path.join(str(baked_project.project_path), "pyproject.toml")
 
     with open(path) as pyproject:
-        poetry = tomlkit.parse(pyproject.read())["tool"]["poetry"]
+        project = tomlkit.parse(pyproject.read())["project"]
 
-    assert poetry["name"] == context["project_name"]
-    assert poetry["description"] == context["project_description"]
-    assert poetry["repository"] == "https://github.com/{0}/{1}".format(
-        context["organization"],
-        context["project_name"],
-    )
+    assert project["name"] == context["project_name"]
+    assert project["description"] == context["project_description"]
 
 
 @pytest.mark.parametrize(
