@@ -45,5 +45,18 @@ def apply_flake_dependencies_to_pre_commit_config():
     os.remove("./requirements.flake8.txt")
 
 
+def finalize_pyproject_toml():
+    with open("pyproject.toml", "r") as fp:
+        content = fp.read()
+
+    content = content.replace("cookiecutter.project_name", PROJECT_NAME)
+    content = content.replace("'true'", "true")
+    content = content.replace("'false'", "false")
+
+    with open("pyproject.toml", "w") as fp:
+        fp.write(content)
+
+
+finalize_pyproject_toml()
 apply_flake_dependencies_to_pre_commit_config()
 print_further_instructions()
