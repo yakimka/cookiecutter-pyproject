@@ -9,11 +9,6 @@
 {{ cookiecutter.project_description }}
 
 
-## Features
-
-- Add yours!
-
-
 ## Installation
 
 ```bash
@@ -31,6 +26,14 @@ from {{ cookiecutter.module_name }}.example import some_function
 print(some_function(3, 4))
 # => 7
 ```
+
+## CI\CD Note (delete this section)
+
+For properly running CI/CD, you must set the following environment secrets in repo settings:
+
+- `DOCKERHUB_TOKEN`
+- `PYPI_TOKEN`
+- `CODECOV_TOKEN`
 
 ## License
 
