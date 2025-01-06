@@ -53,6 +53,7 @@ For properly running CI/CD, you must set the following environment secrets in re
 - `DOCKERHUB_TOKEN`
 - `PYPI_TOKEN`
 - `CODECOV_TOKEN`
+- `UPDATE_URL` for [updater](https://github.com/umputun/updater)
 
 Also you need to duplicate these secrets to Dependabot settings
 if you want to run pipelines on Dependabot PRs.
