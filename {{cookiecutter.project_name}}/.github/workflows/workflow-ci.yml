@@ -28,8 +28,8 @@ env:
   CACHE_REGISTRY_USERNAME: "{{ cookiecutter.github_username }}"
   CACHE_REGISTRY_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
   DOCKER_COMPOSE_SERVICE_NAME: "app"
-  MAIN_PY_VERSION: "3.11"
-  POETRY_DOCKER_IMAGE: "yakimka/poetry:1.8.2-py3.11-slim"
+  MAIN_PY_VERSION: "3.12"
+  POETRY_DOCKER_IMAGE: "yakimka/poetry:2.0.0-py3.12-slim"
 
 concurrency:
   group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
