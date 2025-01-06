@@ -38,6 +38,9 @@ pytest-cov = "^6.0.0"
 pytest-deadfixtures = "^2.2.1"
 pytest-randomly = "^3.16"
 
+[tool.poetry]
+requires-poetry = ">=2.0.0"
+
 [tool.poetry.requires-plugins]
 poetry-plugin-export = ">=1.8.0"
 
