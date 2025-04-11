@@ -20,7 +20,7 @@ dependencies = [
 package-mode = false
 
 [tool.poetry.group.dev.dependencies]
-flake8 = "^5.0.4"
+flake8 = "^7.0.0"
 pytest = "^8.3.3"
 tomlkit = "^0.13.2"
 binaryornot = "^0.4.4"
