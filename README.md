@@ -1,6 +1,6 @@
 # yakimka/cookiecutter-pyproject
 
-[![Build status](https://github.com/yakimka/cookiecutter-pyproject/workflows/test/badge.svg?branch=master&event=push)](https://github.com/yakimka/cookiecutter-pyproject/actions?query=workflow%3Atest)
+[![Build status](https://github.com/yakimka/cookiecutter-pyproject/workflows/test/badge.svg)](https://github.com/yakimka/cookiecutter-pyproject/actions?query=workflow%3Atest)
 [![Dependencies Status](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)](https://github.com/yakimka/cookiecutter-pyproject/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Aapp%2Fdependabot)
 
 [`Cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) template to create new python packages.
