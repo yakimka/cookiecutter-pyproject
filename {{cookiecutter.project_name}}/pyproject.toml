@@ -30,11 +30,11 @@ classifiers = [
 repository = "https://github.com/{{cookiecutter.organization}}/{{cookiecutter.project_name}}"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.13.0"
-pre-commit = "^4.0.1"
-pytest = "^8.3.4"
-pytest-asyncio = "^0.24.0"
-pytest-cov = "^6.0.0"
+mypy = "^1.15.0"
+pre-commit = "^4.2.0"
+pytest = "^8.3.5"
+pytest-asyncio = "^0.26.0"
+pytest-cov = "^6.1.1"
 pytest-deadfixtures = "^2.2.1"
 pytest-randomly = "^3.16"
 
