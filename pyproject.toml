@@ -24,7 +24,7 @@ flake8 = "^7.0.0"
 pytest = "^8.3.3"
 tomlkit = "^0.13.2"
 binaryornot = "^0.4.4"
-flake8-pytest-style = "^1.7.2"
+flake8-pytest-style = "^2.0.0"
 pytest-cookies = "^0.7.0"
 
 [tool.pytest.ini_options]
