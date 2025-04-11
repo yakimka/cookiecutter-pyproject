@@ -85,9 +85,9 @@ jobs:
         run: docker compose run -e CI=1 --user=$(id -u) --rm devtools ./ci.sh
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4.0.1
+        uses: codecov/codecov-action@v5.4.0
         with:
-          file: ./coverage.xml
+          files: ./coverage.xml
           token: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}
           slug: {{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}
 
