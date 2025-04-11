@@ -91,6 +91,7 @@ addopts = [
   "--tb=short",
   "--cov-report=term-missing",
 #  "--cov-fail-under=100",
+  "-vv",
 ]
 
 [tool.coverage.run]
