@@ -7,7 +7,7 @@ all: help
 
 .PHONY: pre-commit
 pre-commit:  ## Run pre-commit with args
-	$(RUN) poetry run pre-commit $(args)
+	$(RUN) pre-commit $(args)
 
 .PHONY: poetry
 poetry:  ## Run poetry with args
@@ -23,17 +23,17 @@ lint:  ## Run flake8, mypy, other linters and verify formatting
 
 .PHONY: mypy
 mypy:  ## Run mypy
-	$(RUN) poetry run mypy $(args)
+	$(RUN) mypy $(args)
 
 .PHONY: test
 test:  ## Run tests
-	$(RUN) poetry run pytest --cov=tests --cov={{cookiecutter.module_name}} $(args)
-	$(RUN) poetry run pytest --dead-fixtures
+	$(RUN) pytest --cov=tests --cov={{cookiecutter.module_name}} $(args)
+	$(RUN) pytest --dead-fixtures
 
 .PHONY: package
 package:  ## Run packages (dependencies) checks
 	$(RUN) poetry check
-	$(RUN) poetry run pip check
+	$(RUN) pip check
 
 .PHONY: build-package
 build-package:  ## Build package
