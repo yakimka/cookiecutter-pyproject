@@ -1,7 +1,7 @@
 # Just lint deps for pre-commit
 #   for use with dependabot
 dlint~=0.16.0
-flake8-async~=25.4.2
+flake8-async~=25.5.3
 flake8-bandit~=4.1.1
 flake8-bugbear~=24.12.12
 flake8-comprehensions~=3.16.0
