@@ -102,7 +102,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: {% raw %}built-package-py${{ env.MAIN_PY_VERSION }}{% endraw %}
           path: dist/
@@ -149,7 +149,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: {% raw %}built-package-py${{ env.MAIN_PY_VERSION }}{% endraw %}
           path: dist/
