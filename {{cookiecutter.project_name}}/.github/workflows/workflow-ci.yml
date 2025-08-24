@@ -9,8 +9,8 @@ on:
   pull_request:
   workflow_dispatch:
   # Update docker hub retention policy
-  schedule:
-    - cron: "21 7 8 * *"
+  #schedule:
+  #  - cron: "21 7 8 * *"
 
 env:
   PIP_NO_CACHE_DIR: "off"
