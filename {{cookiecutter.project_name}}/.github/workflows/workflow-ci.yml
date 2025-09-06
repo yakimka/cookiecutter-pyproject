@@ -85,7 +85,7 @@ jobs:
         run: docker compose run -e CI=1 --user=$(id -u) --rm devtools ./ci.sh
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5.4.3
+        uses: codecov/codecov-action@v5.5.1
         with:
           files: ./coverage.xml
           token: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}
