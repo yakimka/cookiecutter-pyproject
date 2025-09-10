@@ -36,7 +36,7 @@ pytest = "^8.3.5"
 pytest-asyncio = "^1.0.0"
 pytest-cov = "^6.1.1"
 pytest-deadfixtures = "^2.2.1"
-pytest-randomly = "^3.16"
+pytest-randomly = "^4.0.0"
 
 [tool.poetry]
 requires-poetry = ">=2.0.0"
