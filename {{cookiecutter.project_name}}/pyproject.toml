@@ -147,40 +147,80 @@ disallow_untyped_defs = false
 ##{% if cookiecutter.linter == "ruff" %}
 [tool.ruff.lint]
 select = [
+  # flake8-unused-arguments
+  "ARG",
+  # flake8-async
+  "ASYNC",
+  # flake8-bugbear
+  "B",
+  # flake8-blind-except
+  "BLE",
+  # flake8-comprehensions
+  "C4",
+  # flake8-commas
+  "COM",
+  # flake8-django
+  "DJ",
+  # flake8-datetimez
+  "DTZ",
   # pycodestyle
   "E4",
   "E7",
   "E9",
-  # Pyflakes
-  "F",
-  # flake8-bugbear
-  "B",
-  # flake8-quotes
-  "Q",
-  # flake8-async
-  "ASYNC",
-  # flake8-bandit
-  "S",
-  # flake8-comprehensions
-  "C4",
+  # flake8-errmsg
+  "EM",
   # flake8-eradicate
   "ERA",
-  # flake8-pie
-  "PIE",
-  # flake8-pytest-style
-  "PT",
-  # flake8-self
-  "SLF",
-  # flake8-simplify
-  "SIM",
-  # flake8-type-checking
-  "TC",
-  # flake8-unused-arguments
-  "ARG",
+  # flake8-executable
+  "EXE",
+  # Pyflakes
+  "F",
+  # fastapi
+  "FAST",
+  # flake8-logging
+  "LOG",
   # pep8-naming
   "N",
+  #	Use specific rule codes when using noqa
+  "PGH004",
+  # flake8-pie
+  "PIE",
+  # Pylint
+  "PLC",
+  # flake8-quotes
+  # Error
+  "PLE",
+  # flake8-pytest-style
+  "PT",
+  # flake8-pyi,
+  "PYI",
+  "Q",
+  # flake8-raise
+  "RSE",
   # unused noqa
+  # __all__ is not sorted
+  "RUF022",
+  # __slots__ is not sorted
+  "RUF023",
+  # Do not pass mutable objects as values to dict.fromkeys
+  "RUF024",
+  # Decimal() called with float literal argument
+  "RUF032",
   "RUF100",
+  # redirected noqa
+  "RUF101",
+  # flake8-bandit
+  "S",
+  # flake8-simplify
+  "SIM",
+  # flake8-self
+  "SLF",
+  # flake8-slots
+  "SLOT",
+  # flake8-type-checking
+  "TC",
+  # flake8-tidy-imports
+  "TID",
 ]
 ignore = [
   # default ignore list (conflicts with black)
