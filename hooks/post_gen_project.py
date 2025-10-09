@@ -12,6 +12,7 @@ import textwrap
 # Get the root project directory:
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 PROJECT_NAME = "{{ cookiecutter.project_name }}"
+LINTER = "{{ cookiecutter.linter }}"
 
 
 def print_further_instructions():
@@ -55,6 +56,12 @@ def finalize_pyproject_toml():
 
     with open("pyproject.toml", "w") as fp:
         fp.write(content)
+
+
+def remove_files():
+    """Remove unnecessary files."""
+    if LINTER == "ruff":
+        os.remove("setup.cfg")
 
 
 finalize_pyproject_toml()

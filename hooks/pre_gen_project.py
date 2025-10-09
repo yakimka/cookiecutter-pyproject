@@ -4,6 +4,7 @@ import sys
 PROJECT_REGEX = r"^[a-z][a-z0-9\-_]+[a-z0-9]$"
 PROJECT_NAME = "{{ cookiecutter.project_name }}"
 MODULE_NAME = "{{ cookiecutter.module_name }}"
+LINTER = "{{ cookiecutter.linter }}"
 
 
 def validate_project_name():
@@ -34,9 +35,20 @@ def validate_module_name():
         raise ValueError(" ".join(message).format(MODULE_NAME))
 
 
+def validate_linter():
+    valid_linters = ("ruff", "flake8")
+    if LINTER not in valid_linters:
+        message = [
+            "ERROR: The linter {0} is not a valid option.",
+            "Choose one of the following: ruff, flake8",
+        ]
+        raise ValueError(" ".join(message).format(LINTER))
+
+
 validators = (
     validate_project_name,
     validate_module_name,
+    validate_linter,
 )
 
 for validator in validators:

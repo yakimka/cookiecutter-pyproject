@@ -32,11 +32,13 @@ repos:
     rev: 6.0.1
     hooks:
       - id: isort
+##{% if cookiecutter.linter == "ruff" %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.11.13
     hooks:
       - id: ruff-check
         args: [ --fix ]
+##{% elif cookiecutter.linter == "flake8" %}
   - repo: https://github.com/PyCQA/flake8
     rev: 7.2.0
     hooks:
@@ -44,3 +46,4 @@ repos:
         additional_dependencies: [
           # Insert flake8 additional dependencies here
         ]
+#{% endif %}

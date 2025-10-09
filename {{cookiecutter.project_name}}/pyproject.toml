@@ -144,6 +144,7 @@ disallow_untyped_calls = false
 disallow_untyped_decorators = false
 disallow_untyped_defs = false
 
+##{% if cookiecutter.linter == "ruff" %}
 [tool.ruff.lint]
 select = [
   # pycodestyle
@@ -245,3 +246,4 @@ mark-parentheses = false
 
 [tool.ruff.lint.flake8-type-checking]
 exempt-modules = ["typing", "typing_extensions", "collections.abc"]
+##{% endif %}
