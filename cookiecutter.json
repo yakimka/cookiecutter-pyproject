@@ -6,6 +6,7 @@
   "organization": "yakimka",
   "dockerhub_username": "{{ cookiecutter.organization }}",
   "github_username": "{{ cookiecutter.organization }}",
+  "linter": "ruff",
   "max_line_length": "88",
   "pydantic_support": "n",
   "fastapi_support": "n",
