@@ -61,9 +61,10 @@ def finalize_pyproject_toml():
 def remove_files():
     """Remove unnecessary files."""
     if LINTER == "ruff":
-        os.remove("setup.cfg")
+        os.remove("./setup.cfg")
 
 
 finalize_pyproject_toml()
 apply_flake_dependencies_to_pre_commit_config()
 print_further_instructions()
+remove_files()
