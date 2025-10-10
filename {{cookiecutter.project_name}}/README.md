@@ -58,7 +58,7 @@ Docker images (amd64 and arm64) are available on
    ```
 4. Install dependencies:
    ```bash
-   make poetry args="install"
+   make uv args="sync"
    ```
 5. Start the service:
    ```bash
@@ -79,11 +79,11 @@ Docker images (amd64 and arm64) are available on
    ```bash
    make test
    ```
-4. Manage dependencies via Poetry:
+4. Manage dependencies via uv:
    ```bash
-   make poetry args="<poetry-args>"
+   make uv args="<uv-args>"
    ```
-   - For example: `make poetry args="add picodi"`
+   - For example: `make uv args="add picodi"`
 
 5. For local CI debugging:
    ```bash

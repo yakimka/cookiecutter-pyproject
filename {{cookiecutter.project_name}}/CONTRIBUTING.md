@@ -3,15 +3,13 @@
 
 ## Dependencies
 
-We use [poetry](https://github.com/python-poetry/poetry) to manage the dependencies.
+We use [uv](https://docs.astral.sh/uv/) to manage the dependencies.
 
 To install them you would need to run `install` command:
 
 ```bash
-poetry install
+uv sync
 ```
-
-To activate your `virtualenv` run `poetry shell`.
 
 
 ## One magic command

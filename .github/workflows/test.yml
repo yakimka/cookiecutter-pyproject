@@ -32,6 +32,9 @@ jobs:
         # Adding `poetry` to `$PATH`:
         echo "$HOME/.poetry/bin" >> $GITHUB_PATH
 
+    - name: Install uv
+      run: pip install uv
+
     - name: Install dependencies
       run: |
         poetry config virtualenvs.in-project true
