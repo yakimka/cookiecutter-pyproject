@@ -30,10 +30,9 @@ python3 -m venv .venv
 export OSTYPE="linux-gnu"
 
 . .venv/bin/activate
-pip install -U pip
 
 # Testing the project:
-POETRY_VIRTUALENVS_CREATE=false poetry install
+uv sync
 # create git repo for pre-commit
 git init && git add -A
 ./ci.sh

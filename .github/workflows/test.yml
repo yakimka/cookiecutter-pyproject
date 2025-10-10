@@ -25,26 +25,16 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Install poetry
-      run: |
-        curl -sSL "https://install.python-poetry.org" | python
-
-        # Adding `poetry` to `$PATH`:
-        echo "$HOME/.poetry/bin" >> $GITHUB_PATH
-
     - name: Install uv
       run: pip install uv
 
     - name: Install dependencies
       run: |
-        poetry config virtualenvs.in-project true
-        poetry run pip install -U pip
-        poetry install
+        uv sync
 
     - name: Run checks
       run: |
-        poetry run flake8 .
-        poetry run pytest
-        poetry run poetry check
-        poetry run pip check
-        poetry run sh tests/test_integration.sh
+        uv run flake8 .
+        uv run pytest
+        uv pip check
+        uv run sh tests/test_integration.sh
