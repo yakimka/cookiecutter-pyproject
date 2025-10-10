@@ -6,6 +6,8 @@ PROJECT_NAME = "{{ cookiecutter.project_name }}"
 MODULE_NAME = "{{ cookiecutter.module_name }}"
 LINTER = "{{ cookiecutter.linter }}"
 DEPENDENCY_UPDATER = "{{ cookiecutter.dependency_updater }}"
+MINIMAL_PYTHON_VERSION = "{{ cookiecutter.minimal_python_version }}"
+MAXIMUM_PYTHON_VERSION = "{{ cookiecutter.maximum_python_version }}"
 
 
 def validate_project_name():
@@ -56,11 +58,35 @@ def validate_dependency_updater():
         raise ValueError(" ".join(message).format(DEPENDENCY_UPDATER))
 
 
+def validate_python_version():
+    _check_py_version(MINIMAL_PYTHON_VERSION)
+    _check_py_version(MAXIMUM_PYTHON_VERSION)
+    if MINIMAL_PYTHON_VERSION > MAXIMUM_PYTHON_VERSION:
+        message = [
+            "ERROR: The minimal python version {0} is greater than",
+            "the maximum python version {1}.",
+        ]
+        raise ValueError(
+            " ".join(message).format(MINIMAL_PYTHON_VERSION, MAXIMUM_PYTHON_VERSION)
+        )
+
+
+def _check_py_version(version: str) -> None:
+    pattern = r"^3\.[1-9]\d$"
+    if not re.match(pattern, version):
+        message = [
+            "ERROR: The python version {0} is not a valid option.",
+            "Valid versions are from 3.10 to 3.99",
+        ]
+        raise ValueError(" ".join(message).format(version))
+
+
 validators = (
     validate_project_name,
     validate_module_name,
     validate_linter,
     validate_dependency_updater,
+    validate_python_version,
 )
 
 for validator in validators:
