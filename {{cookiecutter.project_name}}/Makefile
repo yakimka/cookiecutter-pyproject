@@ -9,9 +9,9 @@ all: help
 pre-commit:  ## Run pre-commit with args
 	$(RUN) pre-commit $(args)
 
-.PHONY: poetry
-poetry:  ## Run poetry with args
-	$(RUN) poetry $(args)
+.PHONY: uv
+uv:  ## Run uv with args
+	$(RUN) uv $(args)
 
 .PHONY: lint
 lint:  ## Run flake8, mypy, other linters and verify formatting
@@ -32,13 +32,12 @@ test:  ## Run tests
 
 .PHONY: package
 package:  ## Run packages (dependencies) checks
-	$(RUN) poetry check
-	$(RUN) pip check
+	$(RUN) uv pip check
 
 .PHONY: build-package
 build-package:  ## Build package
-	$(RUN) poetry build $(args)
-	$(RUN) poetry export --format=requirements.txt --output=dist/requirements.txt
+	$(RUN) uv build $(args)
+	$(RUN) uv export --format=requirements-txt --output-file=dist/requirements.txt --locked --no-dev --no-emit-project
 
 .PHONY: build-production-image
 build-production-image:  ## Build production image

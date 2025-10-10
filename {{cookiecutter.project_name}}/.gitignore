@@ -7,3 +7,4 @@ docs/_build
 *.sqlite3
 *.db
 docker-compose.override.yml
+*.egg-info
