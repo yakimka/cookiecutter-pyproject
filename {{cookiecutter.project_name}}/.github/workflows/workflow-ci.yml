@@ -26,7 +26,7 @@ env:
   CACHE_REGISTRY_USERNAME: "{{ cookiecutter.github_username }}"
   CACHE_REGISTRY_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
   DOCKER_COMPOSE_SERVICE_NAME: "app"
-  MAIN_PY_VERSION: "3.12"
+  MAIN_PY_VERSION: "{{ cookiecutter.minimal_python_version }}"
   UV_DOCKER_IMAGE: "ghcr.io/astral-sh/uv:latest"
 
 concurrency:
@@ -43,7 +43,7 @@ jobs:
       packages: write
     strategy:
       matrix:
-        python-version: ['3.10', '3.11', '3.12', '3.13', '3.14']
+        python-version: ['3']
 
     steps:
       - uses: actions/checkout@v5

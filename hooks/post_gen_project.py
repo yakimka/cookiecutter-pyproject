@@ -14,6 +14,8 @@ PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 PROJECT_NAME = "{{ cookiecutter.project_name }}"
 LINTER = "{{ cookiecutter.linter }}"
 DEPENDENCY_UPDATER = "{{ cookiecutter.dependency_updater }}"
+MINIMAL_PYTHON_VERSION = "{{ cookiecutter.minimal_python_version }}"
+MAXIMUM_PYTHON_VERSION = "{{ cookiecutter.maximum_python_version }}"
 
 
 def print_further_instructions():
@@ -54,8 +56,29 @@ def finalize_pyproject_toml():
     content = content.replace("cookiecutter.project_name", PROJECT_NAME)
     content = content.replace("'true'", "true")
     content = content.replace("'false'", "false")
+    content = content.replace(
+        'requires-python = ">=3.10,<4.0.0"',
+        f'requires-python = ">={MINIMAL_PYTHON_VERSION},<4.0.0"',
+    )
+    content = content.replace(
+        '  "Programming Language :: Python :: 3",',
+        _generate_py_version_classifier(),
+    )
 
     with open("pyproject.toml", "w") as fp:
+        fp.write(content)
+
+
+def finalize_ci_config():
+    with open(".github/workflows/workflow-ci.yml", "r") as fp:
+        content = fp.read()
+
+    content = content.replace(
+        "python-version: ['3']",
+        f"python-version: {_python_versions_list()!r}",
+    )
+
+    with open(".github/workflows/workflow-ci.yml", "w") as fp:
         fp.write(content)
 
 
@@ -69,7 +92,22 @@ def remove_files():
         os.remove("./.github/dependabot.yml")
 
 
+def _generate_py_version_classifier() -> str:
+    versions = ["3", *_python_versions_list()]
+    classifiers = [
+        f'  "Programming Language :: Python :: {version}",' for version in versions
+    ]
+    return "\n".join(classifiers)
+
+
+def _python_versions_list() -> list[str]:
+    min_version = int(MINIMAL_PYTHON_VERSION.split(".")[1])
+    max_version = int(MAXIMUM_PYTHON_VERSION.split(".")[1])
+    return [f"3.{version}" for version in range(min_version, max_version + 1)]
+
+
 finalize_pyproject_toml()
+finalize_ci_config()
 apply_flake_dependencies_to_pre_commit_config()
 print_further_instructions()
 remove_files()
