@@ -13,6 +13,7 @@ import textwrap
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 PROJECT_NAME = "{{ cookiecutter.project_name }}"
 LINTER = "{{ cookiecutter.linter }}"
+DEPENDENCY_UPDATER = "{{ cookiecutter.dependency_updater }}"
 
 
 def print_further_instructions():
@@ -62,6 +63,10 @@ def remove_files():
     """Remove unnecessary files."""
     if LINTER == "ruff":
         os.remove("./setup.cfg")
+    if DEPENDENCY_UPDATER in ("dependabot", "none"):
+        os.remove("./.github/renovate.json")
+    if DEPENDENCY_UPDATER in ("renovate", "none"):
+        os.remove("./.github/dependabot.yml")
 
 
 finalize_pyproject_toml()

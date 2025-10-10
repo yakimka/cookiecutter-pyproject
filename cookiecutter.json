@@ -11,6 +11,7 @@
   "pydantic_support": "n",
   "fastapi_support": "n",
   "force_typing": "n",
+  "dependency_updater": "dependabot",
 
   "_copy_without_render": [
     ".venv",

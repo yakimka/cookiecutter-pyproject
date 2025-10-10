@@ -5,6 +5,7 @@ PROJECT_REGEX = r"^[a-z][a-z0-9\-_]+[a-z0-9]$"
 PROJECT_NAME = "{{ cookiecutter.project_name }}"
 MODULE_NAME = "{{ cookiecutter.module_name }}"
 LINTER = "{{ cookiecutter.linter }}"
+DEPENDENCY_UPDATER = "{{ cookiecutter.dependency_updater }}"
 
 
 def validate_project_name():
@@ -45,10 +46,21 @@ def validate_linter():
         raise ValueError(" ".join(message).format(LINTER))
 
 
+def validate_dependency_updater():
+    valid_updaters = ("dependabot", "renovate", "none")
+    if DEPENDENCY_UPDATER not in valid_updaters:
+        message = [
+            "ERROR: The dependency updater {0} is not a valid option.",
+            "Choose one of the following: dependabot, renovate, none",
+        ]
+        raise ValueError(" ".join(message).format(DEPENDENCY_UPDATER))
+
+
 validators = (
     validate_project_name,
     validate_module_name,
     validate_linter,
+    validate_dependency_updater,
 )
 
 for validator in validators:
