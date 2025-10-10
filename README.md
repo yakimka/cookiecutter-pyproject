@@ -19,7 +19,7 @@ This project is used to scaffold a `python` package or project structure.
 - [`uv`](https://docs.astral.sh/uv/) for managing dependencies
 - [`mypy`](https://mypy.readthedocs.io) for optional static typing
 - [`pytest`](https://github.com/pytest-dev/pytest) for testing
-- `flake8` for linting
+- `flake8|ruff` for linting
 - `Github Actions` as the default CI
 - [`pre-commit`](https://pre-commit.com/) for running checks before committing (run `pre-commit install` to install git hook)
 

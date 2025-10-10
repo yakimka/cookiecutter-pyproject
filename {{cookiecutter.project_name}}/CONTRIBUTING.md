@@ -19,7 +19,7 @@ Run `make checks` to run everything we have!
 
 ## Tests
 
-We use `pytest` and `flake8` for quality control.
+We use `pytest` and `flake8|ruff` for quality control.
 
 To run all tests:
 
@@ -32,9 +32,6 @@ To run linting:
 ```bash
 make lint
 ```
-Keep in mind: default virtual environment folder excluded by flake8 style checking is `.venv`.
-If you want to customize this parameter, you should do this in `pyproject.toml`.
-
 
 ## Type checks
 
