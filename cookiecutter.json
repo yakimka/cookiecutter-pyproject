@@ -24,8 +24,8 @@
     "maximum_python_version": "Maximum supported Python version",
     "linter": "Choose a linter",
     "max_line_length": "Maximum line length for the linter",
-    "pydantic_support": "Enable mypy plugin and flake8-type-checking settings",
-    "fastapi_support": "Enable flake8-type-checking settings (only for flake8 linter)",
+    "pydantic_support": "Support pydantic by enabling mypy plugin and flake8-type-checking settings",
+    "fastapi_support": "[Only flake8] Support FastApi by enabling flake8-type-checking settings",
     "force_typing": "Enable mypy strict typing settings",
     "dependency_updater": "Choose a dependency updater"
   },
