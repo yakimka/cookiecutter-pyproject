@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import pytest
 
 
@@ -10,6 +8,6 @@ def context():
         "project_name": "test-project",
         "module_name": "test_project",
         "project_description": "Custom description",
-        "organization": "custom-org",
+        "github_username": "custom-org",
         "dockerhub_username": "myusername",
     }

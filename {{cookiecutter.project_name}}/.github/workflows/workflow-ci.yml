@@ -26,7 +26,7 @@ env:
   CACHE_REGISTRY_USERNAME: "{{ cookiecutter.github_username }}"
   CACHE_REGISTRY_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
   DOCKER_COMPOSE_SERVICE_NAME: "app"
-  MAIN_PY_VERSION: "{{ cookiecutter.minimal_python_version }}"
+  MAIN_PY_VERSION: "{{ cookiecutter.minimum_python_version }}"
   UV_DOCKER_IMAGE: "ghcr.io/astral-sh/uv:latest"
 
 concurrency:

@@ -10,7 +10,7 @@ license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.10,<4.0.0"
 authors = [
-  { name = "{{ cookiecutter.organization }}" },
+  { name = "{{ cookiecutter.github_username }}" },
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -35,7 +35,7 @@ dev = [
 ]
 
 [project.urls]
-repository = "https://github.com/{{cookiecutter.organization}}/{{cookiecutter.project_name}}"
+repository = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_name}}"
 
 [tool.setuptools]
 # https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html
@@ -121,7 +121,7 @@ exclude_lines = [
 [tool.mypy]
 files = ["."]
 exclude = ["tests/"]
-##{% if cookiecutter.pydantic_support.startswith("y") %}
+##{% if cookiecutter.pydantic_support %}
 plugins = ["pydantic.mypy"]
 ##{% endif %}
 # mypy configurations: https://mypy.readthedocs.io/en/latest/config_file.html
@@ -130,9 +130,9 @@ check_untyped_defs = true
 disallow_any_explicit = false
 disallow_any_generics = false
 disallow_incomplete_defs = true
-disallow_untyped_calls = '{% if cookiecutter.force_typing.startswith("y") %}true{% else %}false{% endif %}'
-disallow_untyped_decorators = '{% if cookiecutter.force_typing.startswith("y") %}true{% else %}false{% endif %}'
-disallow_untyped_defs = '{% if cookiecutter.force_typing.startswith("y") %}true{% else %}false{% endif %}'
+disallow_untyped_calls = '{{ cookiecutter.force_typing }}'
+disallow_untyped_decorators = '{{ cookiecutter.force_typing }}'
+disallow_untyped_defs = '{{ cookiecutter.force_typing }}'
 ignore_errors = false
 ignore_missing_imports = true
 implicit_reexport = false

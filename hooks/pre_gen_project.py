@@ -4,9 +4,8 @@ import sys
 PROJECT_REGEX = r"^[a-z][a-z0-9\-_]+[a-z0-9]$"
 PROJECT_NAME = "{{ cookiecutter.project_name }}"
 MODULE_NAME = "{{ cookiecutter.module_name }}"
-LINTER = "{{ cookiecutter.linter }}"
-DEPENDENCY_UPDATER = "{{ cookiecutter.dependency_updater }}"
-MINIMAL_PYTHON_VERSION = "{{ cookiecutter.minimal_python_version }}"
+MAX_LINE_LENGTH = "{{ cookiecutter.max_line_length }}"
+MINIMUM_PYTHON_VERSION = "{{ cookiecutter.minimum_python_version }}"
 MAXIMUM_PYTHON_VERSION = "{{ cookiecutter.maximum_python_version }}"
 
 
@@ -38,36 +37,29 @@ def validate_module_name():
         raise ValueError(" ".join(message).format(MODULE_NAME))
 
 
-def validate_linter():
-    valid_linters = ("ruff", "flake8")
-    if LINTER not in valid_linters:
+def validate_max_line_length():
+    try:
+        max_length = int(MAX_LINE_LENGTH)
+    except ValueError:
+        raise ValueError("ERROR: The max line length must be an integer.")
+    if not 79 <= max_length <= 120:
         message = [
-            "ERROR: The linter {0} is not a valid option.",
-            "Choose one of the following: ruff, flake8",
+            "ERROR: The max line length {0} is not a valid option.",
+            "Valid values are between 79 and 120.",
         ]
-        raise ValueError(" ".join(message).format(LINTER))
-
-
-def validate_dependency_updater():
-    valid_updaters = ("dependabot", "renovate", "none")
-    if DEPENDENCY_UPDATER not in valid_updaters:
-        message = [
-            "ERROR: The dependency updater {0} is not a valid option.",
-            "Choose one of the following: dependabot, renovate, none",
-        ]
-        raise ValueError(" ".join(message).format(DEPENDENCY_UPDATER))
+        raise ValueError(" ".join(message).format(MAX_LINE_LENGTH))
 
 
 def validate_python_version():
-    _check_py_version(MINIMAL_PYTHON_VERSION)
+    _check_py_version(MINIMUM_PYTHON_VERSION)
     _check_py_version(MAXIMUM_PYTHON_VERSION)
-    if MINIMAL_PYTHON_VERSION > MAXIMUM_PYTHON_VERSION:
+    if MINIMUM_PYTHON_VERSION > MAXIMUM_PYTHON_VERSION:
         message = [
-            "ERROR: The minimal python version {0} is greater than",
+            "ERROR: The minimum python version {0} is greater than",
             "the maximum python version {1}.",
         ]
         raise ValueError(
-            " ".join(message).format(MINIMAL_PYTHON_VERSION, MAXIMUM_PYTHON_VERSION)
+            " ".join(message).format(MINIMUM_PYTHON_VERSION, MAXIMUM_PYTHON_VERSION)
         )
 
 
@@ -84,8 +76,7 @@ def _check_py_version(version: str) -> None:
 validators = (
     validate_project_name,
     validate_module_name,
-    validate_linter,
-    validate_dependency_updater,
+    validate_max_line_length,
     validate_python_version,
 )
 
