@@ -4,6 +4,7 @@ import sys
 PROJECT_REGEX = r"^[a-z][a-z0-9\-_]+[a-z0-9]$"
 PROJECT_NAME = "{{ cookiecutter.project_name }}"
 MODULE_NAME = "{{ cookiecutter.module_name }}"
+MAX_LINE_LENGTH = "{{ cookiecutter.max_line_length }}"
 MINIMAL_PYTHON_VERSION = "{{ cookiecutter.minimal_python_version }}"
 MAXIMUM_PYTHON_VERSION = "{{ cookiecutter.maximum_python_version }}"
 
@@ -36,6 +37,19 @@ def validate_module_name():
         raise ValueError(" ".join(message).format(MODULE_NAME))
 
 
+def validate_max_line_length():
+    try:
+        max_length = int(MAX_LINE_LENGTH)
+    except ValueError:
+        raise ValueError("ERROR: The max line length must be an integer.")
+    if not 79 <= max_length <= 120:
+        message = [
+            "ERROR: The max line length {0} is not a valid option.",
+            "Valid values are between 79 and 120.",
+        ]
+        raise ValueError(" ".join(message).format(MAX_LINE_LENGTH))
+
+
 def validate_python_version():
     _check_py_version(MINIMAL_PYTHON_VERSION)
     _check_py_version(MAXIMUM_PYTHON_VERSION)
@@ -62,6 +76,7 @@ def _check_py_version(version: str) -> None:
 validators = (
     validate_project_name,
     validate_module_name,
+    validate_max_line_length,
     validate_python_version,
 )
 
