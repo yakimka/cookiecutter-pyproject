@@ -1,7 +1,7 @@
 # {{ cookiecutter.project_name }}
 
-[![Build Status](https://github.com/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}/actions/workflows/workflow-ci.yml/badge.svg?branch={{ cookiecutter.main_branch }}&event=push)](https://github.com/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}/actions/workflows/workflow-ci.yml)
-[![Codecov](https://codecov.io/gh/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}/branch/{{ cookiecutter.main_branch }}/graph/badge.svg)](https://codecov.io/gh/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }})
+[![Build Status](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/actions/workflows/workflow-ci.yml/badge.svg?branch={{ cookiecutter.main_branch }}&event=push)](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/actions/workflows/workflow-ci.yml)
+[![Codecov](https://codecov.io/gh/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/branch/{{ cookiecutter.main_branch }}/graph/badge.svg)](https://codecov.io/gh/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }})
 [![PyPI - Version](https://img.shields.io/pypi/v/{{ cookiecutter.project_name }}.svg)](https://pypi.org/project/{{ cookiecutter.project_name }}/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/{{ cookiecutter.project_name }})](https://pypi.org/project/picodi/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/{{ cookiecutter.project_name }})](https://pypi.org/project/picodi/)
@@ -108,7 +108,7 @@ But don't be very strict, sometimes it's better to use `Any` type.
 
 ## License
 
-[MIT](https://github.com/{{ cookiecutter.organization }}/{{ cookiecutter.project_name }}/blob/{{ cookiecutter.main_branch }}/LICENSE)
+[MIT](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/blob/{{ cookiecutter.main_branch }}/LICENSE)
 
 
 ## Credits

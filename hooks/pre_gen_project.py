@@ -5,7 +5,7 @@ PROJECT_REGEX = r"^[a-z][a-z0-9\-_]+[a-z0-9]$"
 PROJECT_NAME = "{{ cookiecutter.project_name }}"
 MODULE_NAME = "{{ cookiecutter.module_name }}"
 MAX_LINE_LENGTH = "{{ cookiecutter.max_line_length }}"
-MINIMAL_PYTHON_VERSION = "{{ cookiecutter.minimal_python_version }}"
+MINIMUM_PYTHON_VERSION = "{{ cookiecutter.minimum_python_version }}"
 MAXIMUM_PYTHON_VERSION = "{{ cookiecutter.maximum_python_version }}"
 
 
@@ -51,15 +51,15 @@ def validate_max_line_length():
 
 
 def validate_python_version():
-    _check_py_version(MINIMAL_PYTHON_VERSION)
+    _check_py_version(MINIMUM_PYTHON_VERSION)
     _check_py_version(MAXIMUM_PYTHON_VERSION)
-    if MINIMAL_PYTHON_VERSION > MAXIMUM_PYTHON_VERSION:
+    if MINIMUM_PYTHON_VERSION > MAXIMUM_PYTHON_VERSION:
         message = [
-            "ERROR: The minimal python version {0} is greater than",
+            "ERROR: The minimum python version {0} is greater than",
             "the maximum python version {1}.",
         ]
         raise ValueError(
-            " ".join(message).format(MINIMAL_PYTHON_VERSION, MAXIMUM_PYTHON_VERSION)
+            " ".join(message).format(MINIMUM_PYTHON_VERSION, MAXIMUM_PYTHON_VERSION)
         )
 
 

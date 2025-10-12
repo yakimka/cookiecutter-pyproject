@@ -14,7 +14,7 @@ PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 PROJECT_NAME = "{{ cookiecutter.project_name }}"
 LINTER = "{{ cookiecutter.linter }}"
 DEPENDENCY_UPDATER = "{{ cookiecutter.dependency_updater }}"
-MINIMAL_PYTHON_VERSION = "{{ cookiecutter.minimal_python_version }}"
+MINIMUM_PYTHON_VERSION = "{{ cookiecutter.minimum_python_version }}"
 MAXIMUM_PYTHON_VERSION = "{{ cookiecutter.maximum_python_version }}"
 
 
@@ -58,7 +58,7 @@ def finalize_pyproject_toml():
     content = content.replace("'false'", "false")
     content = content.replace(
         'requires-python = ">=3.10,<4.0.0"',
-        f'requires-python = ">={MINIMAL_PYTHON_VERSION},<4.0.0"',
+        f'requires-python = ">={MINIMUM_PYTHON_VERSION},<4.0.0"',
     )
     content = content.replace(
         '  "Programming Language :: Python :: 3",',
@@ -101,7 +101,7 @@ def _generate_py_version_classifier() -> str:
 
 
 def _python_versions_list() -> list[str]:
-    min_version = int(MINIMAL_PYTHON_VERSION.split(".")[1])
+    min_version = int(MINIMUM_PYTHON_VERSION.split(".")[1])
     max_version = int(MAXIMUM_PYTHON_VERSION.split(".")[1])
     return [f"3.{version}" for version in range(min_version, max_version + 1)]
 

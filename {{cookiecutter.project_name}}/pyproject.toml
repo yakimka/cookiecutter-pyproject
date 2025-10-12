@@ -10,7 +10,7 @@ license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.10,<4.0.0"
 authors = [
-  { name = "{{ cookiecutter.organization }}" },
+  { name = "{{ cookiecutter.github_username }}" },
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -35,7 +35,7 @@ dev = [
 ]
 
 [project.urls]
-repository = "https://github.com/{{cookiecutter.organization}}/{{cookiecutter.project_name}}"
+repository = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_name}}"
 
 [tool.setuptools]
 # https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html
