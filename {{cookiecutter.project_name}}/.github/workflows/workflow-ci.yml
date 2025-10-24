@@ -89,7 +89,7 @@ jobs:
           token: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}
           slug: {{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: {% raw %}built-package-py${{ matrix.python-version }}{% endraw %}
           path: dist/
@@ -100,7 +100,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           name: {% raw %}built-package-py${{ env.MAIN_PY_VERSION }}{% endraw %}
           path: dist/
@@ -136,7 +136,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           name: {% raw %}built-package-py${{ env.MAIN_PY_VERSION }}{% endraw %}
           path: dist/
