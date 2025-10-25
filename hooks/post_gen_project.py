@@ -25,6 +25,16 @@ def print_further_instructions():
     Now you can start working on it:
 
         cd {0}
+
+    For properly running CI/CD, you must set
+    the following environment secrets in repo settings:
+    - DOCKERHUB_TOKEN
+    - PYPI_TOKEN
+    - CODECOV_TOKEN
+    - UPDATE_URL for updater
+
+    Also you need to duplicate these secrets to Dependabot settings
+    if you want to run pipelines on Dependabot PRs.
     """
     print(textwrap.dedent(message.format(PROJECT_NAME)))  # noqa: WPS421
 
