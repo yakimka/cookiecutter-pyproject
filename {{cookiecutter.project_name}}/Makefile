@@ -1,17 +1,18 @@
 SHELL:=/usr/bin/env bash
 
-RUN=docker compose run --rm --remove-orphans -it devtools
+RUN=docker compose run --rm --remove-orphans
+RUN_DEVTOOLS=$(RUN_DEVTOOLS) devtools
 
 .PHONY: all
 all: help
 
 .PHONY: pre-commit
 pre-commit:  ## Run pre-commit with args
-	$(RUN) pre-commit $(args)
+	$(RUN_DEVTOOLS) pre-commit $(args)
 
 .PHONY: uv
 uv:  ## Run uv with args
-	$(RUN) uv $(args)
+	$(RUN_DEVTOOLS) uv $(args)
 
 .PHONY: lint
 lint:  ## Run flake8, mypy, other linters and verify formatting
@@ -23,21 +24,21 @@ lint:  ## Run flake8, mypy, other linters and verify formatting
 
 .PHONY: mypy
 mypy:  ## Run mypy
-	$(RUN) mypy $(args)
+	$(RUN_DEVTOOLS) mypy $(args)
 
 .PHONY: test
 test:  ## Run tests
-	$(RUN) pytest --cov=tests --cov={{cookiecutter.module_name}} $(args)
-	$(RUN) pytest --dead-fixtures
+	$(RUN_DEVTOOLS) pytest --cov=tests --cov={{cookiecutter.module_name}} $(args)
+	$(RUN_DEVTOOLS) pytest --dead-fixtures
 
 .PHONY: package
 package:  ## Run packages (dependencies) checks
-	$(RUN) uv pip check
+	$(RUN_DEVTOOLS) uv pip check
 
 .PHONY: build-package
 build-package:  ## Build package
-	$(RUN) uv build $(args)
-	$(RUN) uv export --format=requirements-txt --output-file=dist/requirements.txt --locked --no-dev --no-emit-project
+	$(RUN_DEVTOOLS) uv build $(args)
+	$(RUN_DEVTOOLS) uv export --format=requirements-txt --output-file=dist/requirements.txt --locked --no-dev --no-emit-project
 
 .PHONY: build-production-image
 build-production-image:  ## Build production image
@@ -49,7 +50,7 @@ checks: lint package test  ## Run linting and tests
 
 .PHONY: run-ci
 run-ci:  ## Run CI locally
-	$(RUN) ./ci.sh
+	$(RUN_DEVTOOLS) ./ci.sh
 
 .PHONY: clean
 clean:  ## Clean up
@@ -66,7 +67,7 @@ clean-all:  ## Clean up all
 
 .PHONY: bash
 bash:  ## Run bash
-	$(RUN) bash $(args)
+	$(RUN) -it devtools bash $(args)
 
 .PHONY: help
 help:
