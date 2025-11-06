@@ -1,7 +1,7 @@
 SHELL:=/usr/bin/env bash
 
 RUN=docker compose run --rm --remove-orphans
-RUN_DEVTOOLS=$(RUN_DEVTOOLS) devtools
+RUN_DEVTOOLS=$(RUN) devtools
 
 .PHONY: all
 all: help
