@@ -19,7 +19,7 @@ dependencies = [
 [dependency-groups]
 dev = [
   "flake8>=7.0.0,<8.0.0",
-  "pytest>=8.3.3,<9.0.0",
+  "pytest>=9.0.1,<9.1.0",
   "tomlkit>=0.13.2,<1.0.0",
   "binaryornot>=0.4.4,<1.0.0",
   "pytest-cookies>=0.7.0,<1.0.0",
