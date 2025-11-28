@@ -2,13 +2,14 @@ SHELL:=/usr/bin/env bash
 
 RUN=docker compose run --rm --remove-orphans
 RUN_DEVTOOLS=$(RUN) devtools
+RUN_PYTHON=$(RUN_DEVTOOLS) uv run
 
 .PHONY: all
 all: help
 
 .PHONY: pre-commit
 pre-commit:  ## Run pre-commit with args
-	$(RUN_DEVTOOLS) pre-commit $(args)
+	$(RUN_PYTHON) pre-commit $(args)
 
 .PHONY: uv
 uv:  ## Run uv with args
@@ -24,12 +25,12 @@ lint:  ## Run flake8, mypy, other linters and verify formatting
 
 .PHONY: mypy
 mypy:  ## Run mypy
-	$(RUN_DEVTOOLS) mypy $(args)
+	$(RUN_PYTHON) mypy $(args)
 
 .PHONY: test
 test:  ## Run tests
-	$(RUN_DEVTOOLS) pytest --cov=tests --cov={{cookiecutter.module_name}} $(args)
-	$(RUN_DEVTOOLS) pytest --dead-fixtures
+	$(RUN_PYTHON) pytest --cov=tests --cov={{cookiecutter.module_name}} $(args)
+	$(RUN_PYTHON) pytest --dead-fixtures
 
 .PHONY: package
 package:  ## Run packages (dependencies) checks
