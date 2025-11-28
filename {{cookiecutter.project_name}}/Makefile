@@ -58,6 +58,7 @@ clean:  ## Clean up
 	rm -rf dist
 	rm -rf htmlcov
 	rm -f .coverage coverage.xml
+	find . -type d -name "__pycache__" -exec rm -rf {} +
 
 .PHONY: clean-all
 clean-all:  ## Clean up all
