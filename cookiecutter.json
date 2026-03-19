@@ -32,6 +32,7 @@
 
   "_copy_without_render": [
     ".venv",
-    "docs/_build"
+    "docs/_build",
+    ".devcontainer/scripts"
   ]
 }
