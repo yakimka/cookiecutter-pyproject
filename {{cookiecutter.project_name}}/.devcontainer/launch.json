@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "Run module",
+            "type": "debugpy",
+            "request": "launch",
+            "python": "/opt/venv/bin/python",
+            "module": "some_module",
+            "args": [
+            ],
+            "env": {},
+            "justMyCode": true,
+            "console": "integratedTerminal"
+        }
+    ]
+}

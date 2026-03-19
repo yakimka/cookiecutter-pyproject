@@ -12,4 +12,3 @@ We follow [Semantic Versions](https://semver.org/).
   * Initial release
 * **Bug Fix:**
 * **Breaking Change:**
-

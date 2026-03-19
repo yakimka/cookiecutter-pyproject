@@ -1,0 +1,46 @@
+FROM ghcr.io/umputun/ralphex:latest AS ralphex
+FROM mcr.microsoft.com/devcontainers/python:1-3.13-bookworm
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONASYNCIODEBUG=1 \
+    PIP_NO_CACHE_DIR=off \
+    PIP_DISABLE_PIP_VERSION_CHECK=on \
+    PIP_DEFAULT_TIMEOUT=100 \
+    UV_VERSION=0.10.9 \
+    UV_PYTHON_DOWNLOADS=never \
+    UV_PROJECT_ENVIRONMENT=/opt/venv
+
+
+USER root
+
+RUN mkdir /opt/venv /opt/code && chown vscode:vscode /opt/venv /opt/code
+
+RUN rm -f /etc/apt/sources.list.d/yarn.list \
+  && apt-get update \
+  && apt-get install --no-install-recommends -y  \
+    make \
+    git \
+    fzf \
+    tmux \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN python -m pip install --no-cache-dir \
+    uv==${UV_VERSION} \
+    && ln -s /usr/bin/gpg /usr/local/bin/gpg
+
+COPY --from=ralphex /srv/ralphex /usr/local/bin/ralphex
+RUN chmod +x /usr/local/bin/ralphex
+
+USER vscode
+ENV VIRTUAL_ENV="/opt/venv" \
+    PATH="/opt/venv/bin:$PATH"
+# This creates /home/vscode/.vscode-server owned by vscode in the image layer.
+# When Docker initializes the anonymous volume, it copies ownership from that
+# image directory, so VS Code server can write to it immediately —
+# before any lifecycle commands run.
+RUN mkdir -p /home/vscode/.vscode-server
+
+WORKDIR /opt/code
+COPY --chown=vscode:vscode pyproject.toml uv.lock /opt/code/
+RUN cd /opt/code && uv sync --frozen --no-install-project

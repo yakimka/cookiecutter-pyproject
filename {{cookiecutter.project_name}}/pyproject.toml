@@ -25,6 +25,7 @@ classifiers = [
 dependencies = []
 [dependency-groups]
 dev = [
+  "debugpy>=1.8.20,<2.0.0",
   "mypy>=1.15.0,<2.0.0",
   "pre-commit>=4.2.0,<5.0.0",
   "pytest>=9.0.1,<9.1.0",

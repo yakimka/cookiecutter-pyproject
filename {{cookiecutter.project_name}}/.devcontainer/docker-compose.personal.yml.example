@@ -1,0 +1,24 @@
+# Copy to docker-compose.personal.yml and customize.
+# docker-compose.personal.yml is gitignored.
+services:
+  workspace:
+    volumes:
+      - ${HOME}/.gitconfig_include_zakaz:/home/vscode/.gitconfig_include_zakaz:cached
+      - ${HOME}/.gitexcludes:/home/vscode/.gitexcludes:cached
+    environment:
+      # Set to false to skip Claude Code installation in post-create script.
+      INSTALL_CLAUDE: "true"
+      # Set to false to skip OpenAI Codex CLI installation in post-create script.
+      INSTALL_CODEX: "true"
+      # Claude marketplaces to add before plugin installation.
+      # Keep empty by default. Accepts space- or comma-separated values.
+      # Examples:
+      # CLAUDE_MARKETPLACES: ""
+      # CLAUDE_MARKETPLACES: "https://example.com/marketplace.json"
+      # CLAUDE_MARKETPLACES: "https://example.com/marketplace.json,github.com/org/repo"
+      CLAUDE_MARKETPLACES: "umputun/cc-thingz"
+      # Claude plugins to auto-install (space- or comma-separated list).
+      # Examples:
+      # CLAUDE_PLUGINS: "code-simplifier"
+      # CLAUDE_PLUGINS: "code-simplifier,another-plugin"
+      CLAUDE_PLUGINS: "code-simplifier,brainstorm@umputun-cc-thingz,planning@umputun-cc-thingz,thinking-tools@umputun-cc-thingz,skill-eval@umputun-cc-thingz,workflow@umputun-cc-thingz"

@@ -1,0 +1,42 @@
+{
+  "name": "Workspace Dev Container",
+  "dockerComposeFile": [
+    "../docker-compose.yml",
+    "docker-compose.devcontainer.yml",
+    "docker-compose.personal.yml"
+  ],
+  "service": "workspace",
+  "workspaceFolder": "/opt/code",
+  "initializeCommand": "bash .devcontainer/scripts/host-initialize.sh",
+  "mounts": [
+    "source={{cookiecutter.module_name}}_profile,target=/home/vscode,type=volume",
+    "target=/home/vscode/.vscode-server,type=volume",
+    "source=${localEnv:HOME}/.screenshots,target=/tmp/screenshots,type=bind,readonly",
+    "source=${localEnv:HOME}/.claude,target=/mnt/claude,type=bind,readonly",
+    "source=${localEnv:HOME}/.codex,target=/mnt/codex,type=bind,readonly"
+  ],
+  "runServices": [
+    "workspace"
+  ],
+  "features": {
+    "ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {},
+    "ghcr.io/devcontainers-extra/features/zsh-plugins:0": {},
+    "ghcr.io/devcontainers/features/node:1": {}
+  },
+  "postCreateCommand": "bash .devcontainer/scripts/post-create.sh",
+  "postStartCommand": "bash .devcontainer/scripts/post-start.sh",
+  "remoteUser": "vscode",
+  "shutdownAction": "stopCompose",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/opt/venv/bin/python"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.debugpy",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
+}

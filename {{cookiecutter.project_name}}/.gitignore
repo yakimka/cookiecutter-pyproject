@@ -8,3 +8,4 @@ docs/_build
 *.db
 docker-compose.override.yml
 *.egg-info
+.devcontainer/docker-compose.personal.yml
