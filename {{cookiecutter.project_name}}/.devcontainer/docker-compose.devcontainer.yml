@@ -1,0 +1,13 @@
+# Paths resolve relative to the project root (set by the primary
+# docker-compose.yml via dockerComposeFile in devcontainer.json).
+services:
+  workspace:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile.workspace
+    volumes:
+      - .:/opt/code
+    working_dir: /opt/code
+    command: sleep infinity
+    environment: {}
+    ports: []
