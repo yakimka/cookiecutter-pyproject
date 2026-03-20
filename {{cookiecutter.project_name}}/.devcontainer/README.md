@@ -14,8 +14,6 @@ Use **Dev Containers: Open Folder in Container...** in VS Code to start.
 
 Started via `runServices` in `devcontainer.json`:
 - `workspace` — development container
-- `postgres`
-- `valhalla`
 
 All services stop when VS Code is closed (`shutdownAction: stopCompose`).
 
@@ -23,9 +21,9 @@ All services stop when VS Code is closed (`shutdownAction: stopCompose`).
 
 Devcontainer features (installed automatically):
 - zsh + zsh-plugins
+- node (for CLI tool installation)
 
 VS Code extensions (installed automatically):
-- `anthropic.claude-code`
 - `ms-python.python`
 - `ms-python.debugpy`
 - `ms-azuretools.vscode-docker`
@@ -36,8 +34,9 @@ VS Code extensions (installed automatically):
 |---|---|
 | `{{cookiecutter.module_name}}_profile` → `/home/vscode` | Persists shell history, Claude Code auth, and other user-level state across rebuilds |
 | Anonymous volume → `/home/vscode/.vscode-server` | Fresh VS Code server on each rebuild (avoids stale extension state) |
-| `~/.claude/CLAUDE.md` → `/home/vscode/.claude/CLAUDE.md` (read-only) | Shared global Claude instructions across projects |
-| `~/.claude/{skills,agents,instructions,prompts,commands}` → `/home/vscode/.claude/...` (read-only) | Shared global Claude knowledge artifacts across projects |
+| `~/.claude` → `/mnt/claude` (read-only) | Host Claude config; synced to `~/.claude` on each start by `postStartCommand` |
+| `~/.codex` → `/mnt/codex` (read-only) | Host Codex config; synced to `~/.codex` on each start by `postStartCommand` |
+| `~/.screenshots` → `/tmp/screenshots` (read-only) | Host screenshots accessible inside the container |
 
 ## Personal Configuration
 
@@ -45,8 +44,9 @@ Host-specific mounts (e.g. git config includes) are kept in a gitignored `docker
 
 On first open, `initializeCommand` copies `docker-compose.personal.yml.example` → `docker-compose.personal.yml`. Edit the personal file to add your own bind mounts or environment variables.
 
-Claude behavior is configured there as well:
+AI tooling is configured there as well:
 - `INSTALL_CLAUDE` (`true`/`false`) — enables or disables Claude Code installation in post-create.
+- `INSTALL_CODEX` (`true`/`false`) — enables or disables OpenAI Codex CLI installation in post-create.
 - `CLAUDE_MARKETPLACES` — space- or comma-separated marketplace sources to add before plugin installation.
 - `CLAUDE_PLUGINS` — space- or comma-separated plugin list for auto-install.
 
@@ -54,8 +54,11 @@ Claude behavior is configured there as well:
 
 | Hook | What it does |
 |---|---|
-| `initializeCommand` | Runs `.devcontainer/scripts/host-initialize.sh` on host: ensures `~/.claude` knowledge paths exist, copies `docker-compose.personal.yml` from template if missing, and bootstraps `.vscode/launch.json` from `.devcontainer/launch.json` |
-| `postCreateCommand` | Runs `.devcontainer/scripts/post-create.sh`: reads `INSTALL_CLAUDE`, `CLAUDE_MARKETPLACES`, and `CLAUDE_PLUGINS`; installs Claude Code CLI when enabled, adds requested marketplaces, then installs requested plugins when `claude` command is available |
+| `initializeCommand` | Runs `.devcontainer/scripts/host-initialize.sh` on host: ensures `~/.claude`, `~/.codex`, and `~/.screenshots` directories exist, copies `docker-compose.personal.yml` from template if missing, and bootstraps `.vscode/launch.json` from `.devcontainer/launch.json` |
+| `postCreateCommand` | Runs `.devcontainer/scripts/post-create.sh`: installs Claude Code CLI and Codex CLI when enabled, adds requested Claude marketplaces, then installs requested plugins |
+| `postStartCommand` | Runs `.devcontainer/scripts/post-start.sh`: syncs Claude and Codex configs from read-only mounts (`/mnt/claude`, `/mnt/codex`) into writable home directories |
+
+All scripts support local overrides via `<script-name>.local.sh` (e.g. `post-create.local.sh`), which are sourced at the end if present.
 
 ## Claude Plugins
 
@@ -63,12 +66,13 @@ Plugin setup is env-driven via `docker-compose.personal.yml`.
 
 Defaults from `.devcontainer/docker-compose.personal.yml.example`:
 - `INSTALL_CLAUDE: "true"`
-- `CLAUDE_MARKETPLACES: ""`
-- `CLAUDE_PLUGINS: "code-simplifier"`
+- `INSTALL_CODEX: "true"`
+- `CLAUDE_MARKETPLACES: "umputun/cc-thingz"`
+- `CLAUDE_PLUGINS: "code-simplifier,brainstorm@umputun-cc-thingz,planning@umputun-cc-thingz,thinking-tools@umputun-cc-thingz,skill-eval@umputun-cc-thingz,workflow@umputun-cc-thingz"`
 
-To add marketplaces and plugins, update your personal override:
+To customize, update your personal override:
 
-```bash
+```yaml
 CLAUDE_MARKETPLACES: "https://example.com/marketplace.json,github.com/org/repo"
 CLAUDE_PLUGINS: "code-simplifier,another-plugin"
 ```
