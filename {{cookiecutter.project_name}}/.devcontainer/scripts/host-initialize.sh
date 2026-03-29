@@ -3,7 +3,8 @@
 set -euo pipefail
 
 # Ensure agent config directories exist on the host for read-only bind mounts.
-mkdir -p ~/.screenshots ~/.claude ~/.codex
+mkdir -p ~/.screenshots ~/.claude ~/.codex ~/.config/opencode ~/.local/share/opencode
+touch ~/.local/share/opencode/auth.json
 
 # Copy personal compose override from template if missing
 if [ ! -f .devcontainer/docker-compose.personal.yml ]; then
