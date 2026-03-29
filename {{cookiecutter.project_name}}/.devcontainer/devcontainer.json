@@ -13,7 +13,9 @@
     "target=/home/vscode/.vscode-server,type=volume",
     "source=${localEnv:HOME}/.screenshots,target=/tmp/screenshots,type=bind,readonly",
     "source=${localEnv:HOME}/.claude,target=/mnt/claude,type=bind,readonly",
-    "source=${localEnv:HOME}/.codex,target=/mnt/codex,type=bind,readonly"
+    "source=${localEnv:HOME}/.codex,target=/mnt/codex,type=bind,readonly",
+    "source=${localEnv:HOME}/.config/opencode,target=/mnt/opencode-config,type=bind,readonly",
+    "source=${localEnv:HOME}/.local/share/opencode/auth.json,target=/mnt/opencode-auth.json,type=bind,readonly"
   ],
   "runServices": [
     "workspace"

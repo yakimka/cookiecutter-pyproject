@@ -3,6 +3,7 @@ set -euo pipefail
 
 INSTALL_CLAUDE="${INSTALL_CLAUDE:-true}"
 INSTALL_CODEX="${INSTALL_CODEX:-true}"
+INSTALL_OPENCODE="${INSTALL_OPENCODE:-true}"
 CLAUDE_MARKETPLACES="${CLAUDE_MARKETPLACES:-}"
 CLAUDE_PLUGINS="${CLAUDE_PLUGINS:-}"
 
@@ -35,7 +36,16 @@ else
     echo "Skipping Codex install (INSTALL_CODEX=${INSTALL_CODEX})"
 fi
 
-# 3. Add Claude marketplaces and plugins (space- or comma-separated lists).
+# 3. Install OpenCode CLI (persists in named volume), if enabled.
+if is_truthy "${INSTALL_OPENCODE}"; then
+    if ! command -v opencode &>/dev/null; then
+        curl -fsSL https://opencode.ai/install | bash
+    fi
+else
+    echo "Skipping OpenCode install (INSTALL_OPENCODE=${INSTALL_OPENCODE})"
+fi
+
+# 4. Add Claude marketplaces and plugins (space- or comma-separated lists).
 # ensure_claude_items <item_type> <list_cmd> <add_cmd> <items_csv>
 # Idempotently adds Claude CLI items (marketplaces or plugins).
 ensure_claude_items() {

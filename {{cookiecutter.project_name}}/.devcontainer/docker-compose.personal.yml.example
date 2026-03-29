@@ -10,6 +10,8 @@ services:
       INSTALL_CLAUDE: "true"
       # Set to false to skip OpenAI Codex CLI installation in post-create script.
       INSTALL_CODEX: "true"
+      # Set to false to skip OpenCode installation in post-create script.
+      INSTALL_OPENCODE: "true"
       # Claude marketplaces to add before plugin installation.
       # Keep empty by default. Accepts space- or comma-separated values.
       # Examples:
