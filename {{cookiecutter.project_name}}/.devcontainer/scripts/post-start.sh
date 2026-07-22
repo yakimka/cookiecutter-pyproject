@@ -34,6 +34,13 @@ sync_path "/mnt/claude/prompts"         "${HOME_DIR}/.claude/prompts"
 sync_path "/mnt/claude/commands"        "${HOME_DIR}/.claude/commands"
 sync_path "/mnt/claude/rules"           "${HOME_DIR}/.claude/rules"
 sync_path "/mnt/claude/hooks"           "${HOME_DIR}/.claude/hooks"
+sync_path "/mnt/claude/cc-personal-plugins" "${HOME_DIR}/.claude/cc-personal-plugins"
+
+# Register the personal plugin marketplace if it was synced with content
+PLUGINS_DIR="${HOME_DIR}/.claude/cc-personal-plugins"
+if [ -d "$PLUGINS_DIR" ] && [ -n "$(ls -A "$PLUGINS_DIR" 2>/dev/null)" ]; then
+    claude plugin marketplace add "$PLUGINS_DIR" || echo "Warning: failed to add cc-personal-plugins marketplace" >&2
+fi
 
 # Codex configs
 echo "Syncing codex configuration files..."
