@@ -1,12 +1,14 @@
 [build-system]
-build-backend = "setuptools.build_meta"
-requires = ["setuptools>=61.0", "wheel>=0.37.1"]
+requires = ["poetry-core>=2.2.0"]
+build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "cookiecutter.project_name"
 version = "0.1.0"
 description = "{{ cookiecutter.project_description }}"
-license = { text = "MIT" }
+# PEP 639: SPDX expression instead of the deprecated `{ text = "MIT" }` table
+license = "MIT"
+license-files = ["LICENSE"]
 readme = "README.md"
 requires-python = ">=3.10,<4.0.0"
 authors = [
@@ -17,7 +19,6 @@ classifiers = [
   "Intended Audience :: Developers",
   "Operating System :: OS Independent",
   "Topic :: Software Development :: Libraries :: Python Modules",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: Implementation :: PyPy"
 ]
@@ -38,21 +39,14 @@ dev = [
 [project.urls]
 repository = "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_name}}"
 
-[tool.setuptools]
-# https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html
-platforms = ["Linux"]
-include-package-data = true
-zip-safe = true  # This just means it's safe to zip up the bdist
+[tool.poetry]
+requires-poetry = ">=2.4"
+# `module_name` is a separate cookiecutter variable, so it may differ from the
+# package name that poetry-core would otherwise infer from `project.name`.
+packages = [{ include = "{{ cookiecutter.module_name }}" }]
 
-# Non-code data that should be included in the package source code
-# https://setuptools.pypa.io/en/latest/userguide/datafiles.html
-[tool.setuptools.package-data]
-acme = ["*.xml"]
-
-# Python modules and packages that are included in the
-# distribution package (and therefore become importable)
-[tool.setuptools.packages.find]
-exclude = ["tests", "tests.*", "examples"]
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.10"
 
 [tool.isort]
 # isort configuration:

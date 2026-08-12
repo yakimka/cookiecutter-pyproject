@@ -1,3 +1,4 @@
+# https://github.com/python-poetry/poetry/discussions/1879#discussioncomment-216865
 # `python-base` sets up all our shared environment variables
 ARG PYTHON_VERSION=3.13.6
 FROM python:${PYTHON_VERSION}-slim-bullseye as python-base
@@ -7,15 +8,16 @@ ENV PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
-    UV_VERSION=0.9.1 \
-    UV_PYTHON_DOWNLOADS=never \
+    POETRY_VERSION=2.4.1 \
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
+    POETRY_NO_INTERACTION=1 \
     VENV_PATH="/opt/venv" \
     CODE_PATH="/opt/code"
 
 ENV XDG_CACHE_HOME="$CODE_PATH/.cache" \
     XDG_CONFIG_HOME="/tmp/.config"
 
-# uv will be installed in VENV_PATH
+# poetry will be installed in VENV_PATH
 # and the project virtualenv will be created in CODE_PATH/.venv
 ENV PATH="$CODE_PATH/.venv/bin:$VENV_PATH/bin:$PATH"
 ARG USER_ID=1000
@@ -52,7 +54,11 @@ RUN set -ex \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python -m venv $VENV_PATH
-RUN pip install uv==$UV_VERSION
+# The export plugin is installed up front rather than left to
+# `[tool.poetry.requires-plugins]`, which would fetch it into a per-project
+# `.poetry/plugins` cache on the first project command: that costs a network
+# round trip inside ci.sh and only registers `poetry export` on the next run.
+RUN pip install poetry==$POETRY_VERSION poetry-plugin-export==1.10.*
 
 
 # `development` image is used during development / testing
@@ -66,4 +72,4 @@ COPY --from=builder-base $VENV_PATH $VENV_PATH
 
 USER $USER_NAME
 
-CMD ["uv", "sync"]
+CMD ["poetry", "sync"]

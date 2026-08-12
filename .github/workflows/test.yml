@@ -25,16 +25,20 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Install uv
-      run: pip install uv
+    - name: Install poetry
+      # The export plugin is pinned here instead of being resolved at run time
+      # by `[tool.poetry.requires-plugins]`, so the version is deterministic.
+      run: pip install poetry==2.4.1 poetry-plugin-export==1.10.*
 
     - name: Install dependencies
       run: |
-        uv sync
+        poetry config virtualenvs.in-project true
+        poetry install
 
     - name: Run checks
       run: |
-        uv run flake8 .
-        uv run pytest
-        uv pip check
-        uv run sh tests/test_integration.sh
+        poetry run flake8 .
+        poetry run pytest
+        poetry check
+        poetry run pip check
+        poetry run sh tests/test_integration.sh

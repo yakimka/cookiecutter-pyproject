@@ -1,6 +1,7 @@
 version: 2
 updates:
-  - package-ecosystem: uv
+  # Poetry projects are handled by the `pip` ecosystem
+  - package-ecosystem: pip
     directory: "/"
     schedule:
       interval: daily

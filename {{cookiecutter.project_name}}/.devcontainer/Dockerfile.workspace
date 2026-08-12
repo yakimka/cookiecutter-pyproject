@@ -6,9 +6,9 @@ ENV PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
-    UV_VERSION=0.10.9 \
-    UV_PYTHON_DOWNLOADS=never \
-    UV_PROJECT_ENVIRONMENT=/opt/venv
+    POETRY_VERSION=2.4.1 \
+    POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_CREATE=false
 
 
 USER root
@@ -26,7 +26,7 @@ RUN rm -f /etc/apt/sources.list.d/yarn.list \
   && rm -rf /var/lib/apt/lists/*
 
 RUN python -m pip install --no-cache-dir \
-    uv==${UV_VERSION} \
+    poetry==${POETRY_VERSION} poetry-plugin-export==1.10.* \
     && ln -s /usr/bin/gpg /usr/local/bin/gpg
 
 COPY --from=ralphex /srv/ralphex /usr/local/bin/ralphex
@@ -42,5 +42,7 @@ ENV VIRTUAL_ENV="/opt/venv" \
 RUN mkdir -p /home/vscode/.vscode-server
 
 WORKDIR /opt/code
-COPY --chown=vscode:vscode pyproject.toml uv.lock /opt/code/
-RUN cd /opt/code && uv sync --frozen --no-install-project
+# `poetry.loc[k]` is a glob that makes the lock file optional, so the image
+# still builds on a freshly generated project that has no lock file yet.
+COPY --chown=vscode:vscode pyproject.toml poetry.loc[k] /opt/code/
+RUN cd /opt/code && poetry install --no-root
