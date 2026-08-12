@@ -1,6 +1,6 @@
 [build-system]
-build-backend = "setuptools.build_meta"
-requires = ["setuptools>=61.0", "wheel>=0.37.1"]
+requires = ["poetry-core>=2.2.0"]
+build-backend = "poetry.core.masonry.api"
 
 [project]
 name = "cookiecutter-pyproject"
@@ -10,7 +10,8 @@ readme = "README.md"
 authors = [
   { name = "yakimka", email = "ss.yakim@gmail.com" },
 ]
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.10,<4.0.0"
 
 dependencies = [
@@ -25,21 +26,10 @@ dev = [
   "pytest-cookies>=0.7.0,<1.0.0",
 ]
 
-[tool.setuptools]
-# https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html
-platforms = ["Linux"]
-include-package-data = true
-zip-safe = true  # This just means it's safe to zip up the bdist
-
-# Non-code data that should be included in the package source code
-# https://setuptools.pypa.io/en/latest/userguide/datafiles.html
-[tool.setuptools.package-data]
-acme = ["*.xml"]
-
-# Python modules and packages that are included in the
-# distribution package (and therefore become importable)
-[tool.setuptools.packages.find]
-exclude = ["tests", "tests.*", "examples"]
+[tool.poetry]
+# This is a cookiecutter template, not an installable package.
+package-mode = false
+requires-poetry = ">=2.4"
 
 [tool.pytest.ini_options]
 # Directories that are not visited by pytest collector:

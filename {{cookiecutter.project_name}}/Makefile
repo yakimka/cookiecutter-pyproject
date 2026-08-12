@@ -2,7 +2,8 @@ SHELL:=/usr/bin/env bash
 
 RUN=docker compose run --rm --remove-orphans
 RUN_DEVTOOLS=$(RUN) devtools
-RUN_PYTHON=$(RUN_DEVTOOLS) uv run
+# No `poetry run` needed: Dockerfile-dev puts $CODE_PATH/.venv/bin on PATH.
+RUN_PYTHON=$(RUN_DEVTOOLS)
 
 .PHONY: all
 all: help
@@ -11,9 +12,9 @@ all: help
 pre-commit:  ## Run pre-commit with args
 	$(RUN_PYTHON) pre-commit $(args)
 
-.PHONY: uv
-uv:  ## Run uv with args
-	$(RUN_DEVTOOLS) uv $(args)
+.PHONY: poetry
+poetry:  ## Run poetry with args
+	$(RUN_DEVTOOLS) poetry $(args)
 
 .PHONY: lint
 lint:  ## Run flake8, mypy, other linters and verify formatting
@@ -34,12 +35,13 @@ test:  ## Run tests
 
 .PHONY: package
 package:  ## Run packages (dependencies) checks
-	$(RUN_DEVTOOLS) uv pip check
+	$(RUN_DEVTOOLS) poetry check
+	$(RUN_DEVTOOLS) pip check
 
 .PHONY: build-package
 build-package:  ## Build package
-	$(RUN_DEVTOOLS) uv build $(args)
-	$(RUN_DEVTOOLS) uv export --format=requirements-txt --output-file=dist/requirements.txt --locked --no-dev --no-emit-project
+	$(RUN_DEVTOOLS) poetry build $(args)
+	$(RUN_DEVTOOLS) poetry export --format=requirements.txt --output=dist/requirements.txt
 
 .PHONY: build-production-image
 build-production-image:  ## Build production image
